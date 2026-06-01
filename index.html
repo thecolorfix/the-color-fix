@@ -133,6 +133,119 @@
   .footer-logo span { color: var(--pink-light); }
   .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.4); font-style: italic; font-family: 'Lora', serif; margin-bottom: 20px; }
   .footer-note { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
+
+  /* Email capture popup */
+  .email-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,16,24,0.85);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .email-overlay.visible { display: flex; }
+
+  .email-modal {
+    background: var(--bg);
+    border-radius: 24px;
+    padding: 36px 28px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .email-modal-icon { font-size: 36px; margin-bottom: 14px; }
+
+  .email-modal-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .email-modal-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+  }
+
+  .email-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .email-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .email-input:focus { border-color: var(--pink); }
+  .email-input::placeholder { color: var(--muted); }
+
+  .email-submit {
+    padding: 12px 20px;
+    background: var(--pink);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .email-submit:hover { background: #c4235e; }
+  .email-submit:disabled { background: #ddd; cursor: default; }
+
+  .email-skip {
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    margin-top: 4px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 4px;
+  }
+
+  .email-skip:hover { color: var(--ink); }
+
+  .email-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .email-success-icon { font-size: 44px; }
+  .email-success-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--ink); }
+  .email-success-sub { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  .email-error { font-size: 12px; color: #e8356a; margin-top: 4px; display: none; }
 </style>
 </head>
 <body>
@@ -682,6 +795,7 @@ async function sendMessage() {
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
   if ((!text && !currentImage) || loading) return;
+  if (!checkEmailGate()) return;
   loading = true;
   input.value = '';
   document.getElementById('sendBtn').disabled = true;
@@ -711,6 +825,81 @@ async function sendMessage() {
 }
 
 document.getElementById('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+
+// Email capture system
+let freeQuestionsUsed = 0;
+const FREE_LIMIT = 3;
+let emailUnlocked = localStorage.getItem('colorfix_unlocked') === 'true';
+
+function checkEmailGate() {
+  if (emailUnlocked) return true;
+  freeQuestionsUsed++;
+  localStorage.setItem('colorfix_questions', freeQuestionsUsed);
+  if (freeQuestionsUsed >= FREE_LIMIT) {
+    showEmailPopup();
+    return false;
+  }
+  return true;
+}
+
+function showEmailPopup() {
+  document.getElementById('emailOverlay').classList.add('visible');
+}
+
+function skipEmail() {
+  document.getElementById('emailOverlay').classList.remove('visible');
+  emailUnlocked = true; // give them one more after skipping
+}
+
+async function submitEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  const btn = document.getElementById('emailSubmitBtn');
+  const err = document.getElementById('emailError');
+
+  if (!email || !email.includes('@')) {
+    err.textContent = 'Please enter a valid email address';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '...';
+  err.style.display = 'none';
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      document.getElementById('emailForm').style.display = 'none';
+      document.getElementById('emailSuccess').style.display = 'flex';
+      localStorage.setItem('colorfix_unlocked', 'true');
+      emailUnlocked = true;
+      setTimeout(() => {
+        document.getElementById('emailOverlay').classList.remove('visible');
+      }, 2500);
+    } else {
+      err.textContent = data.error || 'Something went wrong. Try again.';
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Unlock →';
+    }
+  } catch(e) {
+    err.textContent = 'Connection error. Please try again.';
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Unlock →';
+  }
+}
+
+// Load saved question count
+freeQuestionsUsed = parseInt(localStorage.getItem('colorfix_questions') || '0');
+
 
 const LEGAL_CONTENT = {
   privacy: `
@@ -759,5 +948,27 @@ document.getElementById('legalModal').addEventListener('click', function(e) {
 });
 </script>
 
+
+<!-- Email Capture Popup -->
+<div class="email-overlay" id="emailOverlay">
+  <div class="email-modal">
+    <div id="emailForm">
+      <div class="email-modal-icon">✂️</div>
+      <div class="email-modal-title">You've used your 3 free consultations</div>
+      <div class="email-modal-sub">Enter your email for unlimited free access — no credit card needed, ever.</div>
+      <div class="email-input-row">
+        <input type="email" class="email-input" id="emailInput" placeholder="your@email.com" />
+        <button class="email-submit" id="emailSubmitBtn" onclick="submitEmail()">Unlock →</button>
+      </div>
+      <div class="email-error" id="emailError"></div>
+      <button class="email-skip" onclick="skipEmail()">No thanks, I'll use my 3 free questions</button>
+    </div>
+    <div class="email-success" id="emailSuccess">
+      <div class="email-success-icon">🎉</div>
+      <div class="email-success-title">You're in!</div>
+      <div class="email-success-sub">Unlimited access unlocked. Welcome to The Color Fix.</div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
