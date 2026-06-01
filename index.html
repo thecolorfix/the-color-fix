@@ -79,7 +79,13 @@
   .typing-dot:nth-child(2) { animation-delay: 0.2s; }
   .typing-dot:nth-child(3) { animation-delay: 0.4s; }
   @keyframes typingPulse { 0%, 100% { transform: scale(0.8); opacity: 0.4; } 50% { transform: scale(1.2); opacity: 1; } }
-  .chat-input-row { border-top: 1px solid var(--border); padding: 12px 16px; display: flex; gap: 10px; align-items: center; background: white; }
+  .chat-input-row { border-top: 1px solid var(--border); padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; background: white; }
+  .chat-input-inner { display: flex; gap: 10px; align-items: center; }
+  .upload-preview { display: flex; align-items: center; gap: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 8px 12px; font-size: 12px; color: var(--ink2); }
+  .upload-preview img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+  .upload-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; padding: 0 4px; }
+  .upload-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--border); cursor: pointer; color: var(--muted); font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .upload-btn:hover { border-color: var(--pink); color: var(--pink); }
   .chat-input { flex: 1; background: var(--bg); border: 1.5px solid var(--border); border-radius: 100px; padding: 10px 18px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--ink); outline: none; transition: border-color 0.2s; }
   .chat-input:focus { border-color: var(--pink); }
   .chat-input::placeholder { color: var(--muted); }
@@ -191,16 +197,25 @@
         </div>
       </div>
       <div class="chat-input-row">
-        <input type="text" class="chat-input" id="chatInput" placeholder="Describe your hair situation..." />
-        <button class="chat-send" id="sendBtn" onclick="sendMessage()">→</button>
+        <div id="imagePreview" style="display:none;" class="upload-preview">
+          <img id="previewImg" src="" alt="Hair photo" />
+          <span id="previewName" style="flex:1;"></span>
+          <button class="upload-remove" onclick="removeImage()">✕</button>
+        </div>
+        <div class="chat-input-inner">
+          <button class="upload-btn" onclick="document.getElementById('imageUpload').click()" title="Upload hair photo">📷</button>
+          <input type="file" id="imageUpload" accept="image/*" style="display:none;" onchange="handleImage(event)" />
+          <input type="text" class="chat-input" id="chatInput" placeholder="Describe your hair or upload a photo..." />
+          <button class="chat-send" id="sendBtn" onclick="sendMessage()">→</button>
+        </div>
       </div>
     </div>
     <div class="quick-prompts">
+      <button class="quick-btn" onclick="usePrompt(this)">Match my color 📸</button>
       <button class="quick-btn" onclick="usePrompt(this)">I want to go blonde 🌟</button>
       <button class="quick-btn" onclick="usePrompt(this)">My dye turned orange 😬</button>
       <button class="quick-btn" onclick="usePrompt(this)">Best drugstore red?</button>
       <button class="quick-btn" onclick="usePrompt(this)">How to fix brassiness?</button>
-      <button class="quick-btn" onclick="usePrompt(this)">Root touch-up tips</button>
     </div>
   </div>
 </section>
@@ -278,18 +293,45 @@ const SYSTEM = `You are an expert AI hair color consultant with 21+ years of pro
 
 Your personality: warm, fun, encouraging and real. Talk like a knowledgeable best friend who happens to be a master colorist. You LOVE helping people do their own hair at home and believe most people can achieve great results themselves.
 
+COLOR MATCHING (when user uploads a photo):
+- Analyze their current hair color carefully — identify the level (1-10), tone (warm/cool/neutral), and undertones
+- Identify any existing color, highlights, damage, or chemical treatments visible
+- Based on their goal, recommend the exact shade number and brand they should buy
+- Explain WHY that shade will work for their specific hair
+- Mention what undertones to watch for and how to neutralize them if needed
+
 Your approach:
 - Be enthusiastic and encouraging about at-home color
 - Give specific, real product recommendations (drugstore, Sally Beauty, Ulta, Amazon)
 - Give clear step by step instructions
 - Only suggest a professional for truly complex situations: severe damage, more than 3 levels of lift on compromised hair, or major color corrections
-- For everything else — root touch ups, going a shade or two lighter or darker, toning, vivid colors, semi permanent color — guide them confidently through it
+- For everything else — guide them confidently through it
 - Always mention a patch test and strand test but keep it brief
 - Keep responses fun and conversational
 - End with an encouraging follow up question`;
 
 let messages = [];
 let loading = false;
+let currentImage = null;
+
+function handleImage(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    currentImage = e.target.result;
+    document.getElementById('previewImg').src = currentImage;
+    document.getElementById('previewName').textContent = file.name;
+    document.getElementById('imagePreview').style.display = 'flex';
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeImage() {
+  currentImage = null;
+  document.getElementById('imagePreview').style.display = 'none';
+  document.getElementById('imageUpload').value = '';
+}
 
 function usePrompt(btn) {
   document.getElementById('chatInput').value = btn.textContent.trim();
@@ -303,16 +345,36 @@ function formatText(text) {
 async function sendMessage() {
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
-  if (!text || loading) return;
+  if ((!text && !currentImage) || loading) return;
   loading = true;
   input.value = '';
   document.getElementById('sendBtn').disabled = true;
   const messagesEl = document.getElementById('chatMessages');
-  messages.push({ role: 'user', content: text });
-  messagesEl.innerHTML += `<div class="msg msg-user"><div class="msg-avatar">YOU</div><div class="msg-bubble">${text}</div></div>`;
+
+  // Build message content
+  let userContent;
+  let displayText = text || 'Please analyze my hair color from this photo.';
+
+  if (currentImage) {
+    const base64 = currentImage.split(',')[1];
+    const mediaType = currentImage.split(';')[0].split(':')[1];
+    userContent = [
+      { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
+      { type: 'text', text: text || 'Please analyze my hair color from this photo and tell me what color level and tone I have, and what products would work best for my goal.' }
+    ];
+    messagesEl.innerHTML += `<div class="msg msg-user"><div class="msg-avatar">YOU</div><div class="msg-bubble"><img src="${currentImage}" style="width:120px;height:80px;object-fit:cover;border-radius:8px;display:block;margin-bottom:6px;">${displayText}</div></div>`;
+    removeImage();
+  } else {
+    userContent = text;
+    messagesEl.innerHTML += `<div class="msg msg-user"><div class="msg-avatar">YOU</div><div class="msg-bubble">${text}</div></div>`;
+  }
+
+  messages.push({ role: 'user', content: userContent });
+
   const typingId = 'typing-' + Date.now();
   messagesEl.innerHTML += `<div class="msg msg-bot" id="${typingId}"><div class="msg-avatar">✂</div><div class="msg-bubble" style="padding:14px 16px;"><div class="typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>`;
   messagesEl.scrollTop = messagesEl.scrollHeight;
+
   try {
     const res = await fetch('/api/chat', {
       method: 'POST',
