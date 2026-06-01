@@ -193,7 +193,12 @@
       <div class="chat-messages" id="chatMessages">
         <div class="msg msg-bot">
           <div class="msg-avatar">✂</div>
-          <div class="msg-bubble">Hey! 👋 Welcome to The Color Fix. I'm here to help you get the color you actually want — safely and without the guesswork.<br><br>Tell me about your hair right now: what's your current color, has it been dyed before, and what are you hoping to do?</div>
+          <div class="msg-bubble">Hey! 👋 Welcome to The Color Fix — I'm your personal hair color consultant.<br><br>Let's figure out exactly what you need. First, do you already know what you want or would you like me to guide you through it?
+            <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+              <button onclick="startConsultation()" style="background:var(--pink);color:white;border:none;padding:8px 16px;border-radius:100px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;">Guide me through it ✨</button>
+              <button onclick="skipToChat()" style="background:white;color:var(--ink);border:1.5px solid var(--border);padding:8px 16px;border-radius:100px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">I know what I want</button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="chat-input-row">
@@ -289,6 +294,178 @@
 </footer>
 
 <script>
+// Hair level chart data
+const HAIR_LEVELS = [
+  { level: 1, name: 'Black', color: '#0a0a0a' },
+  { level: 2, name: 'Darkest Brown', color: '#1a0f0a' },
+  { level: 3, name: 'Dark Brown', color: '#2c1a0e' },
+  { level: 4, name: 'Medium Brown', color: '#3d2314' },
+  { level: 5, name: 'Light Brown', color: '#5c3317' },
+  { level: 6, name: 'Dark Blonde', color: '#7d4e1f' },
+  { level: 7, name: 'Medium Blonde', color: '#a06830' },
+  { level: 8, name: 'Light Blonde', color: '#c49050' },
+  { level: 9, name: 'Very Light Blonde', color: '#ddb870' },
+  { level: 10, name: 'Platinum', color: '#f0d898' },
+];
+
+const CONSULTATION_STEPS = [
+  {
+    question: "What's your natural hair color level? Pick the one that matches you closest:",
+    type: 'level_chart'
+  },
+  {
+    question: "Has your hair been color treated before?",
+    type: 'options',
+    options: ['Virgin hair (never colored)', 'Box dye before', 'Professionally colored', 'Bleached before']
+  },
+  {
+    question: "What's your hair texture like?",
+    type: 'options',
+    options: ['Fine & silky', 'Medium & normal', 'Thick & coarse', 'Curly or coily']
+  },
+  {
+    question: "What's your hair goal?",
+    type: 'options',
+    options: ['Go lighter / blonde', 'Go darker', 'Cover grays', 'Try a fun color', 'Fix a color problem', 'Touch up roots']
+  }
+];
+
+let consultationStep = 0;
+let consultationAnswers = {};
+let consultationMode = false;
+
+function startConsultation() {
+  consultationMode = true;
+  consultationStep = 0;
+  consultationAnswers = {};
+  addBotMessage("Perfect! I'll walk you through it step by step — just like a real salon consultation. 💕");
+  setTimeout(() => showConsultationStep(), 600);
+}
+
+function skipToChat() {
+  addBotMessage("Got it! Tell me what you're working with and what you want to do — and feel free to upload a photo of your hair too! 📷");
+}
+
+function showConsultationStep() {
+  const step = CONSULTATION_STEPS[consultationStep];
+  const messagesEl = document.getElementById('chatMessages');
+
+  if (step.type === 'level_chart') {
+    const chartHTML = `
+      <div style="font-weight:500;margin-bottom:12px;">${step.question}</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:4px;">
+        ${HAIR_LEVELS.map(l => `
+          <button onclick="selectLevel(${l.level}, '${l.name}')" style="
+            background:${l.color};
+            border:2px solid transparent;
+            border-radius:10px;
+            padding:8px 4px;
+            cursor:pointer;
+            transition:all 0.2s;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:4px;
+          " onmouseover="this.style.borderColor='#E8357A'" onmouseout="this.style.borderColor='transparent'">
+            <span style="color:${l.level > 5 ? '#333' : '#fff'};font-size:11px;font-weight:700;">${l.level}</span>
+            <span style="color:${l.level > 5 ? '#333' : '#fff'};font-size:9px;text-align:center;line-height:1.2;">${l.name}</span>
+          </button>
+        `).join('')}
+      </div>
+      <p style="font-size:11px;color:#8A7080;margin-top:8px;">Level 1 = darkest, Level 10 = lightest</p>
+    `;
+    messagesEl.innerHTML += `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble" style="max-width:90%;">${chartHTML}</div></div>`;
+  } else {
+    const optionsHTML = `
+      <div style="font-weight:500;margin-bottom:12px;">${step.question}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${step.options.map(opt => `
+          <button onclick="selectOption('${opt}')" style="
+            background:white;
+            border:1.5px solid rgba(232,53,122,0.2);
+            border-radius:12px;
+            padding:10px 14px;
+            cursor:pointer;
+            font-size:14px;
+            color:#3D2B38;
+            text-align:left;
+            font-family:'DM Sans',sans-serif;
+            transition:all 0.2s;
+          " onmouseover="this.style.borderColor='#E8357A';this.style.background='#FFF0F5'" onmouseout="this.style.borderColor='rgba(232,53,122,0.2)';this.style.background='white'">${opt}</button>
+        `).join('')}
+      </div>
+    `;
+    messagesEl.innerHTML += `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble" style="max-width:90%;">${optionsHTML}</div></div>`;
+  }
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function selectLevel(level, name) {
+  consultationAnswers.level = level;
+  consultationAnswers.levelName = name;
+  addUserMessage(`Level ${level} — ${name}`);
+  nextConsultationStep();
+}
+
+function selectOption(option) {
+  const stepKey = ['treatment', 'texture', 'goal'][consultationStep - 1];
+  consultationAnswers[stepKey] = option;
+  addUserMessage(option);
+  nextConsultationStep();
+}
+
+function nextConsultationStep() {
+  consultationStep++;
+  if (consultationStep < CONSULTATION_STEPS.length) {
+    setTimeout(() => showConsultationStep(), 500);
+  } else {
+    setTimeout(() => finishConsultation(), 500);
+  }
+}
+
+function finishConsultation() {
+  const { level, levelName, treatment, texture, goal } = consultationAnswers;
+  const summary = `My natural hair is Level ${level} (${levelName}). It has been: ${treatment}. My texture is: ${texture}. My goal is: ${goal}. Based on all of this, what do you recommend for me?`;
+  addBotMessage("Perfect — I have everything I need! Let me put together your personalized recommendation... 💕");
+  setTimeout(() => {
+    messages.push({ role: 'user', content: summary });
+    callAPI();
+  }, 800);
+}
+
+function addUserMessage(text) {
+  const messagesEl = document.getElementById('chatMessages');
+  messagesEl.innerHTML += `<div class="msg msg-user"><div class="msg-avatar">YOU</div><div class="msg-bubble">${text}</div></div>`;
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function addBotMessage(text) {
+  const messagesEl = document.getElementById('chatMessages');
+  messagesEl.innerHTML += `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble">${formatText(text)}</div></div>`;
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+async function callAPI() {
+  const messagesEl = document.getElementById('chatMessages');
+  const typingId = 'typing-' + Date.now();
+  messagesEl.innerHTML += `<div class="msg msg-bot" id="${typingId}"><div class="msg-avatar">✂</div><div class="msg-bubble" style="padding:14px 16px;"><div class="typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>`;
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system: SYSTEM, messages: messages })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Something went wrong — try again!';
+    messages.push({ role: 'assistant', content: reply });
+    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble">${formatText(reply)}</div></div>`;
+  } catch(e) {
+    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble">Error: ${e.message}</div></div>`;
+  }
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
 const SYSTEM = `You are an expert AI hair color consultant with 21+ years of professional hairstylist experience. You help everyday people — especially teens and young adults — find the right at-home hair color and guide them safely.
 
 Your personality: warm, fun, encouraging and real. Talk like a knowledgeable best friend who happens to be a master colorist. You LOVE helping people do their own hair at home and believe most people can achieve great results themselves.
@@ -351,7 +528,6 @@ async function sendMessage() {
   document.getElementById('sendBtn').disabled = true;
   const messagesEl = document.getElementById('chatMessages');
 
-  // Build message content
   let userContent;
   let displayText = text || 'Please analyze my hair color from this photo.';
 
@@ -370,27 +546,9 @@ async function sendMessage() {
   }
 
   messages.push({ role: 'user', content: userContent });
-
-  const typingId = 'typing-' + Date.now();
-  messagesEl.innerHTML += `<div class="msg msg-bot" id="${typingId}"><div class="msg-avatar">✂</div><div class="msg-bubble" style="padding:14px 16px;"><div class="typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>`;
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-
-  try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system: SYSTEM, messages: messages })
-    });
-    const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Something went wrong — try again!';
-    messages.push({ role: 'assistant', content: reply });
-    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble">${formatText(reply)}</div></div>`;
-  } catch(e) {
-    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble">Error: ${e.message}</div></div>`;
-  }
+  await callAPI();
   loading = false;
   document.getElementById('sendBtn').disabled = false;
-  messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
 document.getElementById('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
