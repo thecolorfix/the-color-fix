@@ -291,8 +291,26 @@
   <div class="footer-logo">The <span>Color</span> Fix</div>
   <div class="footer-tagline">Your hair. Your rules. We've got the fix.</div>
   <div class="footer-note">Always patch test 48hrs before coloring · Some situations need a professional — we'll always tell you when</div>
-    <div class="footer-note" style="margin-top:8px; font-size:10px; opacity:0.4;">The Color Fix provides hair color guidance for informational purposes only. Results vary based on individual hair type and condition. We are not liable for any hair damage, color results, or adverse reactions. By using this service you acknowledge that you proceed at your own risk.</div>
+  <div class="footer-note" style="margin-top:8px; font-size:10px; opacity:0.5; line-height:1.6;">
+    <strong style="color:var(--pink-light);">Affiliate Disclosure:</strong> The Color Fix participates in the Amazon Associates Program. We earn a small commission when you purchase through our links at no extra cost to you. We only recommend products we believe in.
+  </div>
+  <div class="footer-note" style="margin-top:8px; font-size:10px; opacity:0.4; line-height:1.6;">
+    <strong>Disclaimer:</strong> The Color Fix provides hair color guidance for informational and educational purposes only. Results vary based on individual hair type, condition, and history. We are not liable for any hair damage, color results, or adverse reactions. Always perform a patch test 48 hours before coloring. By using this service you acknowledge that you proceed at your own risk. When in doubt, consult a licensed professional stylist.
+  </div>
+  <div style="margin-top:16px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
+    <a href="#" onclick="showModal('privacy')" style="font-size:11px; color:rgba(255,255,255,0.3); text-decoration:underline; cursor:pointer;">Privacy Policy</a>
+    <a href="#" onclick="showModal('terms')" style="font-size:11px; color:rgba(255,255,255,0.3); text-decoration:underline; cursor:pointer;">Terms of Service</a>
+    <a href="#" onclick="showModal('affiliate')" style="font-size:11px; color:rgba(255,255,255,0.3); text-decoration:underline; cursor:pointer;">Affiliate Disclosure</a>
+  </div>
 </footer>
+
+<!-- Legal Modals -->
+<div id="legalModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; overflow-y:auto; padding:24px;">
+  <div style="background:#fff; max-width:600px; margin:0 auto; border-radius:20px; padding:32px; position:relative;">
+    <button onclick="closeModal()" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; cursor:pointer; color:#8A7080;">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
 
 <script>
 // Hair level chart data
@@ -693,6 +711,52 @@ async function sendMessage() {
 }
 
 document.getElementById('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+
+const LEGAL_CONTENT = {
+  privacy: `
+    <h2 style="font-family:'Syne',sans-serif; font-size:22px; margin-bottom:16px;">Privacy Policy</h2>
+    <p style="font-size:12px; color:#8A7080; margin-bottom:16px;">Last updated: June 2026</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Information We Collect:</strong> When you use The Color Fix, we may collect information you voluntarily provide in the chat, including hair color questions and uploaded photos. We do not store your conversation history on our servers.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>How We Use Your Information:</strong> Your chat inputs are processed by Anthropic's AI to generate responses. We do not sell, share, or distribute your personal information to third parties except as required to operate the service.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Cookies:</strong> This site may use basic cookies for functionality. We do not use tracking cookies for advertising purposes.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Third Party Links:</strong> This site contains Amazon affiliate links. Amazon has its own privacy policy which governs any data collected when you visit their site.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Children's Privacy:</strong> We do not knowingly collect personal information from children under 13. If you are under 13 please have a parent or guardian supervise your use of this service.</p>
+    <p style="font-size:14px; line-height:1.7; color:#3D2B38;"><strong>Contact:</strong> For privacy questions, contact us through our social channels @getthecolorfix.</p>
+  `,
+  terms: `
+    <h2 style="font-family:'Syne',sans-serif; font-size:22px; margin-bottom:16px;">Terms of Service</h2>
+    <p style="font-size:12px; color:#8A7080; margin-bottom:16px;">Last updated: June 2026</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Acceptance of Terms:</strong> By using The Color Fix you agree to these terms. If you do not agree, please do not use this service.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Informational Purpose Only:</strong> The Color Fix provides general hair color guidance for informational and educational purposes only. This is not professional beauty advice. Results vary significantly based on individual hair type, condition, previous chemical treatments, and application technique.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>No Liability:</strong> The Color Fix and its operators are not responsible or liable for any hair damage, breakage, color results, skin reactions, or other adverse outcomes resulting from following advice provided by this service. You use this service entirely at your own risk.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Patch Test Requirement:</strong> You agree to always perform a patch test at least 48 hours before applying any hair color product. Failure to do so is solely your responsibility.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Professional Consultation:</strong> For significant color changes, chemically treated hair, or any situation where you are unsure, we strongly recommend consulting a licensed professional cosmetologist.</p>
+    <p style="font-size:14px; line-height:1.7; color:#3D2B38;"><strong>Changes to Terms:</strong> We reserve the right to update these terms at any time. Continued use of the service constitutes acceptance of updated terms.</p>
+  `,
+  affiliate: `
+    <h2 style="font-family:'Syne',sans-serif; font-size:22px; margin-bottom:16px;">Affiliate Disclosure</h2>
+    <p style="font-size:12px; color:#8A7080; margin-bottom:16px;">Last updated: June 2026</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;">The Color Fix participates in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;">When you click on product links on this site and make a purchase, we may earn a small commission at no additional cost to you. This helps support The Color Fix and allows us to continue providing free hair color guidance.</p>
+    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;">We only recommend products that we genuinely believe will be helpful based on professional hair color expertise. Our recommendations are not influenced by commission rates.</p>
+    <p style="font-size:14px; line-height:1.7; color:#3D2B38;">This disclosure is made in compliance with the Federal Trade Commission's guidelines on endorsements and testimonials (16 CFR Part 255).</p>
+  `
+};
+
+function showModal(type) {
+  document.getElementById('modalContent').innerHTML = LEGAL_CONTENT[type];
+  document.getElementById('legalModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('legalModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('legalModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
 </script>
 
 </body>
