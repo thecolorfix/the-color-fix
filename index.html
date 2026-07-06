@@ -2,208 +2,795 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Color Fix — At-Home Hair Color Help</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Color Fix — Choose Your Vibe</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --pink: #E8357A;
-    --pink-light: #FF6BA8;
-    --yellow: #F5C842;
-    --mint: #00C48C;
-    --bg: #FDF8F5;
-    --bg2: #FFF0F5;
-    --ink: #1A1018;
-    --ink2: #3D2B38;
-    --muted: #8A7080;
-    --border: rgba(232,53,122,0.12);
-  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(253,248,245,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 60px; }
-  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--ink); letter-spacing: -0.01em; }
-  .nav-logo span { color: var(--pink); }
-  .nav-cta { background: var(--pink); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.04em; padding: 9px 20px; border-radius: 100px; border: none; cursor: pointer; transition: all 0.2s; text-decoration: none; }
-  .nav-cta:hover { background: #c4235e; transform: translateY(-1px); }
-  .hero { min-height: 100vh; padding: 100px 24px 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
-  .hero-orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; }
-  .orb1 { width: 500px; height: 500px; background: rgba(232,53,122,0.12); top: -100px; left: -150px; }
-  .orb2 { width: 400px; height: 400px; background: rgba(245,200,66,0.1); bottom: 0; right: -100px; }
-  .orb3 { width: 300px; height: 300px; background: rgba(0,196,140,0.08); top: 40%; left: 55%; }
-  .hero-pill { display: inline-flex; align-items: center; gap: 7px; background: white; border: 1px solid var(--border); border-radius: 100px; padding: 7px 16px; font-size: 12px; color: var(--pink); font-weight: 500; letter-spacing: 0.03em; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(232,53,122,0.08); animation: fadeUp 0.5s ease both; }
-  .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); animation: blink 2s ease-in-out infinite; }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(42px, 10vw, 82px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 6px; position: relative; animation: fadeUp 0.5s ease 0.1s both; }
-  .h1-line1 { color: var(--ink); display: block; }
-  .h1-line2 { color: var(--pink); display: block; font-style: italic; font-family: 'Lora', serif; }
-  .h1-line3 { color: var(--ink); display: block; }
-  .hero-sub { font-size: clamp(16px, 2.5vw, 20px); color: var(--muted); max-width: 500px; line-height: 1.65; margin: 24px auto 36px; font-family: 'Lora', serif; font-style: italic; animation: fadeUp 0.5s ease 0.2s both; }
-  .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; animation: fadeUp 0.5s ease 0.3s both; }
-  .btn-main { background: var(--pink); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; padding: 16px 32px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; box-shadow: 0 8px 24px rgba(232,53,122,0.25); }
-  .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(232,53,122,0.35); }
-  .btn-ghost { background: white; color: var(--ink); font-family: 'Syne', sans-serif; font-weight: 600; font-size: 15px; padding: 16px 28px; border-radius: 100px; border: 1.5px solid rgba(26,16,24,0.12); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
-  .btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
-  .hero-proof { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.5s ease 0.4s both; }
-  .proof-item { text-align: center; }
-  .proof-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px; color: var(--ink); }
-  .proof-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .trust-bar { background: var(--ink); padding: 18px 24px; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
-  .trust-item { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-  .trust-item span { color: var(--pink-light); }
-  section { padding: 80px 24px; }
-  .section-inner { max-width: 860px; margin: 0 auto; }
-  .sec-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 10px; }
-  .sec-title { font-family: 'Syne', sans-serif; font-size: clamp(26px, 5vw, 40px); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 40px; color: var(--ink); }
-  #chat-section { background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .chat-wrap { max-width: 680px; margin: 0 auto; }
-  .chat-header { text-align: center; margin-bottom: 32px; }
-  .chat-window { background: var(--bg); border: 1.5px solid var(--border); border-radius: 24px; overflow: hidden; box-shadow: 0 8px 40px rgba(232,53,122,0.08); }
-  .chat-topbar { background: white; border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
-  .chat-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--pink), var(--pink-light)); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-  .chat-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); }
-  .chat-status { font-size: 11px; color: var(--mint); display: flex; align-items: center; gap: 4px; }
-  .chat-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--mint); display: inline-block; }
-  .chat-messages { padding: 20px; display: flex; flex-direction: column; gap: 14px; min-height: 320px; max-height: 400px; overflow-y: auto; }
-  .msg { display: flex; gap: 10px; align-items: flex-start; }
-  .msg.user { flex-direction: row-reverse; }
-  .msg-avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
-  .msg-bot .msg-avatar { background: linear-gradient(135deg, var(--pink), var(--pink-light)); }
-  .msg-user .msg-avatar { background: var(--ink); color: white; font-size: 11px; font-weight: 700; font-family: 'Syne', sans-serif; }
-  .msg-bubble { max-width: 76%; padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.6; }
-  .msg-bot .msg-bubble { background: white; border: 1px solid var(--border); border-top-left-radius: 4px; color: var(--ink2); }
-  .msg-user .msg-bubble { background: var(--pink); color: white; border-top-right-radius: 4px; }
-  .typing { display: flex; align-items: center; gap: 4px; padding: 14px 16px; }
-  .typing-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: typingPulse 1.2s ease-in-out infinite; }
-  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes typingPulse { 0%, 100% { transform: scale(0.8); opacity: 0.4; } 50% { transform: scale(1.2); opacity: 1; } }
-  .chat-input-row { border-top: 1px solid var(--border); padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; background: white; }
-  .chat-input-inner { display: flex; gap: 10px; align-items: center; }
-  .upload-preview { display: flex; align-items: center; gap: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 8px 12px; font-size: 12px; color: var(--ink2); }
-  .upload-preview img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
-  .upload-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; padding: 0 4px; }
-  .upload-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--border); cursor: pointer; color: var(--muted); font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
-  .upload-btn:hover { border-color: var(--pink); color: var(--pink); }
-  .chat-input { flex: 1; background: var(--bg); border: 1.5px solid var(--border); border-radius: 100px; padding: 10px 18px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--ink); outline: none; transition: border-color 0.2s; }
-  .chat-input:focus { border-color: var(--pink); }
-  .chat-input::placeholder { color: var(--muted); }
-  .chat-send { width: 40px; height: 40px; border-radius: 50%; background: var(--pink); border: none; cursor: pointer; color: white; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
-  .chat-send:hover { background: #c4235e; transform: scale(1.05); }
-  .chat-send:disabled { background: #ddd; cursor: default; transform: none; }
-  .quick-prompts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; justify-content: center; }
-  .quick-btn { background: white; border: 1.5px solid var(--border); border-radius: 100px; padding: 7px 14px; font-size: 12px; color: var(--ink2); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
-  .quick-btn:hover { border-color: var(--pink); color: var(--pink); background: var(--bg2); }
-  #how { background: var(--bg); }
-  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  @media (max-width: 640px) { .steps-grid { grid-template-columns: 1fr; } }
-  .step-card { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 28px 24px; transition: transform 0.2s, box-shadow 0.2s; }
-  .step-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(232,53,122,0.1); }
-  .step-number { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--pink), var(--pink-light)); color: white; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-  .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; margin-bottom: 8px; color: var(--ink); }
-  .step-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
-  #why { background: white; }
-  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  @media (max-width: 580px) { .why-grid { grid-template-columns: 1fr; } }
-  .why-card { background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 24px; transition: transform 0.2s; }
-  .why-card:hover { transform: translateY(-2px); }
-  .why-icon { font-size: 26px; margin-bottom: 12px; display: block; }
-  .why-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 7px; color: var(--ink); }
-  .why-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
-  #pricing { background: var(--bg); }
-  .pricing-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 620px; margin: 0 auto; }
-  @media (max-width: 560px) { .pricing-wrap { grid-template-columns: 1fr; } }
-  .price-card { background: white; border: 1.5px solid var(--border); border-radius: 24px; padding: 32px 28px; position: relative; }
-  .price-card.pro { border-color: var(--pink); background: linear-gradient(160deg, #fff5f9, white); }
-  .price-popular { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--pink); color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; white-space: nowrap; }
-  .price-tier { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
-  .price-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 44px; color: var(--ink); line-height: 1; }
-  .price-per { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
-  .price-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-  .price-list li { font-size: 14px; color: var(--ink2); padding-left: 22px; position: relative; line-height: 1.5; }
-  .price-list li::before { content: '✓'; position: absolute; left: 0; color: var(--mint); font-weight: 700; }
-  .price-btn { width: 100%; padding: 13px; border-radius: 100px; border: none; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.2s; }
-  .price-btn.outline { background: transparent; border: 1.5px solid rgba(26,16,24,0.15); color: var(--ink); }
-  .price-btn.outline:hover { border-color: var(--pink); color: var(--pink); }
-  .price-btn.filled { background: var(--pink); color: white; box-shadow: 0 6px 20px rgba(232,53,122,0.25); }
-  .price-btn.filled:hover { background: #c4235e; transform: translateY(-1px); }
-  footer { background: var(--ink); padding: 40px 24px; text-align: center; }
-  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: white; margin-bottom: 8px; }
-  .footer-logo span { color: var(--pink-light); }
-  .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.4); font-style: italic; font-family: 'Lora', serif; margin-bottom: 20px; }
-  .footer-note { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
 
-  /* Email capture popup */
+  body {
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.8s ease, color 0.8s ease;
+  }
+
+  /* ============ VIBES ============ */
+  body.vibe-morning {
+    --bg: #FDF4E7;
+    --bg2: #FFF8EE;
+    --ink: #1A1208;
+    --accent: #F5A623;
+    --accent2: #E8620A;
+    --muted: #8A6A30;
+    --border: rgba(245,166,35,0.2);
+    --card: rgba(255,255,255,0.7);
+    --glow: rgba(245,166,35,0.15);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,166,35,0.15) 0%, transparent 60%), var(--bg);
+  }
+
+  body.vibe-boost {
+    --bg: #F0F7FF;
+    --bg2: #E8F4FF;
+    --ink: #060D1A;
+    --accent: #0066FF;
+    --accent2: #00CCFF;
+    --muted: #3A5A8A;
+    --border: rgba(0,102,255,0.2);
+    --card: rgba(255,255,255,0.8);
+    --glow: rgba(0,204,255,0.12);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,204,255,0.1) 0%, transparent 60%), var(--bg);
+  }
+
+  body.vibe-soft {
+    --bg: #F9F4F0;
+    --bg2: #F5EDE8;
+    --ink: #1A1010;
+    --accent: #C4788A;
+    --accent2: #E8A8B8;
+    --muted: #8A6070;
+    --border: rgba(196,120,138,0.2);
+    --card: rgba(255,255,255,0.75);
+    --glow: rgba(196,120,138,0.1);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,168,184,0.12) 0%, transparent 60%), var(--bg);
+  }
+
+  body.vibe-mystical {
+    --bg: #0D0818;
+    --bg2: #120D22;
+    --ink: #F0E8FF;
+    --accent: #9B59FF;
+    --accent2: #FFD700;
+    --muted: #9080B0;
+    --border: rgba(155,89,255,0.2);
+    --card: rgba(255,255,255,0.05);
+    --glow: rgba(155,89,255,0.15);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(155,89,255,0.12) 0%, transparent 60%), var(--bg);
+  }
+
+  body.vibe-dark {
+    --bg: #080508;
+    --bg2: #100C10;
+    --ink: #F8F0F0;
+    --accent: #C4304A;
+    --accent2: #8B1A2A;
+    --muted: #907080;
+    --border: rgba(196,48,74,0.2);
+    --card: rgba(255,255,255,0.04);
+    --glow: rgba(196,48,74,0.12);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,48,74,0.1) 0%, transparent 60%), var(--bg);
+  }
+
+  body.vibe-electric {
+    --bg: #050510;
+    --bg2: #0A0A1A;
+    --ink: #FFFFFF;
+    --accent: #FF00FF;
+    --accent2: #00FFCC;
+    --muted: #8080C0;
+    --border: rgba(255,0,255,0.2);
+    --card: rgba(255,255,255,0.04);
+    --glow: rgba(255,0,255,0.12);
+    background: radial-gradient(ellipse 80% 60% at 30% 20%, rgba(255,0,255,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 50% at 70% 60%, rgba(0,255,204,0.06) 0%, transparent 50%),
+                var(--bg);
+  }
+
+  body.vibe-besties {
+    --bg: #FFF0F8;
+    --bg2: #FFE4F4;
+    --ink: #1A0818;
+    --accent: #FF1493;
+    --accent2: #FF69B4;
+    --muted: #A0507A;
+    --border: rgba(255,20,147,0.18);
+    --card: rgba(255,255,255,0.8);
+    --glow: rgba(255,20,147,0.12);
+    background: radial-gradient(ellipse 70% 50% at 20% 20%, rgba(255,105,180,0.12) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 50% at 80% 70%, rgba(255,20,147,0.1) 0%, transparent 55%),
+                var(--bg);
+  }
+
+  /* Canvas for portal animation */
+  #portal-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 0 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============ VIBE PICKER SCREEN ============ */
+  #screen-picker {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .picker-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(42px, 10vw, 72px);
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin-bottom: 6px;
+    color: #1A1018;
+  }
+
+  .picker-tagline {
+    font-size: 14px;
+    color: #8A7080;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 48px;
+    letter-spacing: 0.04em;
+  }
+
+  .picker-question {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 4vw, 24px);
+    text-align: center;
+    color: #1A1018;
+    margin-bottom: 28px;
+  }
+
+  .vibes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 560px;
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 480px) { .vibes-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .vibe-card {
+    border-radius: 20px;
+    padding: 20px 14px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+    border: 1.5px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vibe-card:hover { transform: translateY(-4px); }
+
+  .vibe-card.morning { background: linear-gradient(135deg, #FFF3D4, #FFE0A0); border-color: rgba(245,166,35,0.3); }
+  .vibe-card.boost { background: linear-gradient(135deg, #E0F0FF, #B8DCFF); border-color: rgba(0,102,255,0.2); }
+  .vibe-card.soft { background: linear-gradient(135deg, #FFF0F3, #F8D8E0); border-color: rgba(196,120,138,0.25); }
+  .vibe-card.mystical { background: linear-gradient(135deg, #1A0D30, #2D1A50); border-color: rgba(155,89,255,0.3); }
+  .vibe-card.dark { background: linear-gradient(135deg, #1A0808, #2D1010); border-color: rgba(196,48,74,0.3); }
+  .vibe-card.electric { background: linear-gradient(135deg, #0A0020, #1A0040); border-color: rgba(255,0,255,0.3); }
+
+  .vibe-emoji { font-size: 32px; display: block; margin-bottom: 8px; }
+
+  .vibe-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .vibe-card.morning .vibe-name, .vibe-card.boost .vibe-name, .vibe-card.soft .vibe-name { color: #1A1018; }
+  .vibe-card.mystical .vibe-name { color: #E0D0FF; }
+  .vibe-card.dark .vibe-name { color: #F8D0D8; }
+  .vibe-card.electric .vibe-name { color: #FF80FF; }
+
+  .vibe-desc {
+    font-size: 11px;
+    line-height: 1.4;
+    opacity: 0.65;
+  }
+
+  .vibe-card.morning .vibe-desc, .vibe-card.boost .vibe-desc, .vibe-card.soft .vibe-desc { color: #1A1018; }
+  .vibe-card.mystical .vibe-desc, .vibe-card.dark .vibe-desc, .vibe-card.electric .vibe-desc { color: rgba(255,255,255,0.6); }
+
+  /* ============ MAIN SITE ============ */
+  #screen-main { display: none; }
+  #screen-main.active { display: block; }
+
+  /* Vibe bar */
+  .vibe-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .vibe-bar-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .change-vibe {
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 5px 12px;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+
+  .change-vibe:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    padding: 60px 24px 48px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(48px, 12vw, 88px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .hero-logo span { color: var(--accent); }
+
+  .hero-tagline {
+    font-size: clamp(15px, 3vw, 19px);
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 8px 24px var(--glow);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 24px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Spotify embed */
+  .spotify-section {
+    padding: 0 24px 40px;
+  }
+
+  .spotify-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .spotify-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  /* Chat section */
+  .chat-section {
+    padding: 0 24px 40px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 5vw, 32px);
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.15;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* Chat window */
+  .chat-window {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 40px var(--glow);
+  }
+
+  .chat-topbar {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+  }
+
+  .chat-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .chat-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--ink); }
+  .chat-status { font-size: 10px; color: #00C48C; display: flex; align-items: center; gap: 4px; }
+  .chat-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #00C48C; display: inline-block; }
+
+  .chat-messages {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 280px;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+
+  .msg { display: flex; gap: 8px; align-items: flex-start; }
+  .msg.user { flex-direction: row-reverse; }
+
+  .msg-av {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .msg-bot .msg-av { background: var(--accent); }
+  .msg-user .msg-av { background: var(--ink); color: white; font-size: 9px; font-weight: 700; font-family: 'Syne', sans-serif; }
+
+  .msg-bubble {
+    max-width: 78%;
+    padding: 11px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .msg-bot .msg-bubble { background: var(--bg2); border: 1px solid var(--border); border-top-left-radius: 4px; color: var(--ink); }
+  .msg-user .msg-bubble { background: var(--accent); color: white; border-top-right-radius: 4px; }
+
+  .typing { display: flex; align-items: center; gap: 4px; padding: 12px 14px; }
+  .tdot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: tp 1.2s ease-in-out infinite; }
+  .tdot:nth-child(2) { animation-delay: 0.2s; }
+  .tdot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes tp { 0%,100% { transform: scale(0.7); opacity: 0.4; } 50% { transform: scale(1.2); opacity: 1; } }
+
+  /* Image preview */
+  .upload-preview {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .upload-preview img { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; }
+  .upload-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 14px; margin-left: auto; }
+
+  .chat-input-row {
+    border-top: 1px solid var(--border);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--card);
+  }
+
+  .chat-input-inner { display: flex; gap: 8px; align-items: center; }
+
+  .upload-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .upload-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .chat-input {
+    flex: 1;
+    background: var(--bg2);
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    padding: 9px 16px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .chat-input:focus { border-color: var(--accent); }
+  .chat-input::placeholder { color: var(--muted); }
+
+  .chat-send {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .chat-send:hover { filter: brightness(1.1); transform: scale(1.05); }
+  .chat-send:disabled { background: var(--border); cursor: default; transform: none; }
+
+  /* Quick prompts */
+  .quick-prompts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 14px;
+  }
+
+  .quick-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 13px;
+    font-size: 12px;
+    color: var(--ink);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+    backdrop-filter: blur(10px);
+  }
+
+  .quick-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Consultation flow */
+  .consult-section { padding: 0 24px 40px; }
+
+  .consult-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(10px);
+    display: none;
+  }
+
+  .consult-card.active { display: block; }
+
+  .consult-q {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(17px, 3.5vw, 22px);
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .consult-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+
+  .consult-opt {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg2);
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--ink);
+    text-align: left;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.4;
+  }
+
+  .consult-opt:hover { border-color: var(--accent); }
+  .consult-opt.sel { border-color: var(--accent); background: var(--glow); }
+
+  /* Hair level chart */
+  .level-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+
+  .level-swatch {
+    border-radius: 10px;
+    padding: 10px 6px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.15s;
+  }
+
+  .level-swatch:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .level-swatch.sel { border-color: var(--accent); }
+
+  .level-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; display: block; margin-bottom: 3px; }
+  .level-name { font-size: 9px; line-height: 1.2; display: block; }
+
+  /* Steps */
+  .steps-section { padding: 0 24px 40px; }
+
+  .step-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(10px);
+    position: relative;
+  }
+
+  .step-num-badge {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--accent);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    padding: 3px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+  }
+
+  .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; color: var(--ink); margin-bottom: 8px; }
+  .step-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  /* Rest period */
+  .rest-card {
+    background: var(--glow);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .rest-icon { font-size: 32px; margin-bottom: 10px; display: block; }
+  .rest-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; color: var(--ink); margin-bottom: 6px; }
+  .rest-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* Email capture */
   .email-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(26,16,24,0.85);
+    background: rgba(0,0,0,0.75);
     z-index: 999;
     align-items: center;
     justify-content: center;
     padding: 24px;
+    backdrop-filter: blur(8px);
   }
 
   .email-overlay.visible { display: flex; }
 
   .email-modal {
     background: var(--bg);
+    border: 1px solid var(--border);
     border-radius: 24px;
     padding: 36px 28px;
-    max-width: 420px;
+    max-width: 400px;
     width: 100%;
     text-align: center;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
   }
 
   .email-modal-icon { font-size: 36px; margin-bottom: 14px; }
+  .email-modal-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 21px; color: var(--ink); margin-bottom: 8px; line-height: 1.2; }
+  .email-modal-sub { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 22px; font-style: italic; }
 
-  .email-modal-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    color: var(--ink);
-    margin-bottom: 8px;
-    line-height: 1.2;
-  }
-
-  .email-modal-sub {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 24px;
-    font-style: italic;
-    font-family: 'Georgia', serif;
-  }
-
-  .email-input-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
+  .email-input-row { display: flex; gap: 8px; margin-bottom: 10px; }
 
   .email-input {
     flex: 1;
-    padding: 12px 16px;
+    padding: 11px 14px;
     border: 1.5px solid var(--border);
     border-radius: 100px;
     font-size: 14px;
     font-family: 'DM Sans', sans-serif;
     color: var(--ink);
-    background: white;
+    background: var(--bg2);
     outline: none;
     transition: border-color 0.2s;
   }
 
-  .email-input:focus { border-color: var(--pink); }
+  .email-input:focus { border-color: var(--accent); }
   .email-input::placeholder { color: var(--muted); }
 
   .email-submit {
-    padding: 12px 20px;
-    background: var(--pink);
+    padding: 11px 18px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .email-submit:hover { filter: brightness(1.1); }
+  .email-submit:disabled { opacity: 0.5; cursor: default; }
+
+  .email-skip { font-size: 12px; color: var(--muted); cursor: pointer; background: none; border: none; margin-top: 6px; display: block; width: 100%; text-align: center; text-decoration: underline; }
+  .email-error { font-size: 12px; color: #E8357A; margin-top: 4px; display: none; }
+  .email-success { display: none; flex-direction: column; align-items: center; gap: 8px; }
+  .email-success-icon { font-size: 40px; }
+  .email-success-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 19px; color: var(--ink); }
+  .email-success-sub { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* Footer */
+  footer {
+    background: rgba(0,0,0,0.08);
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--ink); margin-bottom: 6px; }
+  .footer-logo span { color: var(--accent); }
+  .footer-tagline { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 16px; }
+  .footer-note { font-size: 11px; color: var(--muted); line-height: 1.6; opacity: 0.6; margin-bottom: 8px; }
+  .footer-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+  .footer-link { font-size: 11px; color: var(--muted); cursor: pointer; text-decoration: underline; background: none; border: none; }
+
+  /* Legal modal */
+  #legalModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; overflow-y: auto; padding: 24px; }
+  .legal-inner { background: white; max-width: 600px; margin: 0 auto; border-radius: 20px; padding: 32px; position: relative; }
+  .legal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: #8A7080; }
+
+  /* Signup section */
+  .signup-section {
+    padding: 60px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .signup-input-row { display: flex; gap: 8px; max-width: 400px; margin: 0 auto 10px; }
+
+  .signup-input {
+    flex: 1;
+    padding: 13px 16px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: var(--bg2);
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .signup-input:focus { border-color: var(--accent); }
+  .signup-input::placeholder { color: var(--muted); }
+
+  .signup-btn {
+    padding: 13px 22px;
+    background: var(--accent);
     color: white;
     border: none;
     border-radius: 100px;
@@ -215,448 +802,400 @@
     white-space: nowrap;
   }
 
-  .email-submit:hover { background: #c4235e; }
-  .email-submit:disabled { background: #ddd; cursor: default; }
-
-  .email-skip {
-    font-size: 12px;
-    color: var(--muted);
-    cursor: pointer;
-    text-decoration: underline;
-    background: none;
-    border: none;
-    margin-top: 4px;
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 4px;
-  }
-
-  .email-skip:hover { color: var(--ink); }
-
-  .email-success {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .email-success-icon { font-size: 44px; }
-  .email-success-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--ink); }
-  .email-success-sub { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-  .email-error { font-size: 12px; color: #e8356a; margin-top: 4px; display: none; }
+  .signup-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">The <span>Color</span> Fix</div>
-  <a href="#chat-section" class="nav-cta">Get Your Fix →</a>
-</nav>
+<canvas id="portal-canvas"></canvas>
 
-<section class="hero">
-  <div class="hero-orb orb1"></div>
-  <div class="hero-orb orb2"></div>
-  <div class="hero-orb orb3"></div>
-  <div class="hero-pill">
-    <div class="hero-pill-dot"></div>
-    AI Color Consultant · Available 24/7
-  </div>
-  <h1>
-    <span class="h1-line1">Your hair.</span>
-    <span class="h1-line2">Your rules.</span>
-    <span class="h1-line3">We've got the fix.</span>
-  </h1>
-  <p class="hero-sub">Expert at-home hair color advice, powered by 21+ years of professional knowledge. No appointment. No judgment. Just answers.</p>
-  <div class="hero-buttons">
-    <a href="#chat-section" class="btn-main">Ask The Color Fix ✦</a>
-    <a href="#how" class="btn-ghost">See How It Works</a>
-  </div>
-  <div class="hero-proof">
-    <div class="proof-item"><div class="proof-num">21+</div><div class="proof-label">Years of Pro Knowledge</div></div>
-    <div class="proof-item"><div class="proof-num">Free</div><div class="proof-label">To Get Started</div></div>
-    <div class="proof-item"><div class="proof-num">24/7</div><div class="proof-label">Always On</div></div>
-  </div>
-</section>
+<!-- ============ VIBE PICKER ============ -->
+<div id="screen-picker">
+  <div class="picker-logo">The <span style="color:#E8357A;">Color</span> Fix</div>
+  <div class="picker-tagline">your time. your space. your vibe.</div>
+  <div class="picker-question">What's your vibe today?</div>
 
-<div class="trust-bar">
-  <div class="trust-item"><span>✦</span> Box color advice</div>
-  <div class="trust-item"><span>✦</span> Color corrections</div>
-  <div class="trust-item"><span>✦</span> Root touch-ups</div>
-  <div class="trust-item"><span>✦</span> Toning & brassiness</div>
-  <div class="trust-item"><span>✦</span> Going blonde safely</div>
+  <div class="vibes-grid">
+    <div class="vibe-card morning" onclick="setVibe('morning','☀️','Morning Party','#F5A623')">
+      <span class="vibe-emoji">☀️</span>
+      <span class="vibe-name">Morning Party</span>
+      <span class="vibe-desc">Sacred early energy. Spiritual house.</span>
+    </div>
+    <div class="vibe-card boost" onclick="setVibe('boost','⚡','Boost','#0066FF')">
+      <span class="vibe-emoji">⚡</span>
+      <span class="vibe-name">Boost</span>
+      <span class="vibe-desc">Shift your mood. Fast.</span>
+    </div>
+    <div class="vibe-card soft" onclick="setVibe('soft','🕯️','Soft Night','#C4788A')">
+      <span class="vibe-emoji">🕯️</span>
+      <span class="vibe-name">Soft Night</span>
+      <span class="vibe-desc">Candlelit. Quiet. Restorative.</span>
+    </div>
+    <div class="vibe-card mystical" onclick="setVibe('mystical','🔮','Mystical','#9B59FF')">
+      <span class="vibe-emoji">🔮</span>
+      <span class="vibe-name">Mystical</span>
+      <span class="vibe-desc">Cosmic. Ceremonial. Gold.</span>
+    </div>
+    <div class="vibe-card dark" onclick="setVibe('dark','🖤','Dark & Sultry','#C4304A')">
+      <span class="vibe-emoji">🖤</span>
+      <span class="vibe-name">Dark & Sultry</span>
+      <span class="vibe-desc">Slow burn. Jewel tones. Noir.</span>
+    </div>
+    <div class="vibe-card electric" onclick="setVibe('electric','💥','Electric','#FF00FF')">
+      <span class="vibe-emoji">💥</span>
+      <span class="vibe-name">Electric</span>
+      <span class="vibe-desc">Neon. Bold. Rave energy.</span>
+    </div>
+    <div class="vibe-card" onclick="setVibe('besties','🎀','Besties','#FF1493')" style="background:linear-gradient(135deg,#FFE4F4,#FFC8EC);border-color:rgba(255,20,147,0.25);">
+      <span class="vibe-emoji">🎀</span>
+      <span class="vibe-name" style="color:#1A0818;">Besties</span>
+      <span class="vibe-desc" style="color:#1A0818;">Y2K pop. Hair day. Best friend energy.</span>
+    </div>
+  </div>
 </div>
 
-<section id="chat-section">
-  <div class="chat-wrap">
-    <div class="chat-header">
-      <div class="sec-eyebrow" style="text-align:center;">Try It Now</div>
-      <div class="sec-title" style="text-align:center; margin-bottom:8px;">Ask anything about your hair color</div>
-      <p style="font-size:15px; color:var(--muted); font-family:'Lora',serif; font-style:italic; text-align:center;">The bad advice stops here.</p>
-    </div>
-    <div class="chat-window">
-      <div class="chat-topbar">
-        <div class="chat-avatar">✂</div>
-        <div>
-          <div class="chat-name">The Color Fix</div>
-          <div class="chat-status">Online now</div>
-        </div>
+<!-- ============ MAIN SITE ============ -->
+<div id="screen-main">
+  <!-- Vibe bar -->
+  <div class="vibe-bar">
+    <div class="vibe-bar-name" id="vibeBarName">☀️ Morning Party</div>
+    <button class="change-vibe" onclick="changeVibe()">Change vibe ↺</button>
+  </div>
+
+  <div class="wrap">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-logo">The <span>Color</span> Fix</div>
+      <div class="hero-tagline">Make it a moment. Make it yours.</div>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollToChat()">Get My Color Fix ✦</button>
+        <button class="btn-ghost" onclick="scrollToSteps()">See How It Works</button>
       </div>
-      <div class="chat-messages" id="chatMessages">
-        <div class="msg msg-bot">
-          <div class="msg-avatar">✂</div>
-          <div class="msg-bubble">Hey! 👋 Welcome to The Color Fix — I'm your personal hair color consultant.<br><br>Let's figure out exactly what you need. First, do you already know what you want or would you like me to guide you through it?<br><br><span style="font-size:11px;color:#8A7080;font-style:italic;">⚠️ The Color Fix provides general guidance for informational purposes only. Results vary based on individual hair type and condition. We are not responsible for any hair damage or color results. Always patch test 48hrs before coloring.</span>
-            <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-              <button onclick="startConsultation()" style="background:var(--pink);color:white;border:none;padding:8px 16px;border-radius:100px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;">Guide me through it ✨</button>
-              <button onclick="skipToChat()" style="background:white;color:var(--ink);border:1.5px solid var(--border);padding:8px 16px;border-radius:100px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">I know what I want</button>
-            </div>
+    </div>
+
+    <!-- Spotify -->
+    <div class="spotify-section">
+      <div class="spotify-label">🎵 Your vibe playlist</div>
+      <div class="spotify-wrap" id="spotifyWrap">
+        <iframe id="spotifyEmbed" style="border-radius:12px;" src="" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- Chat -->
+    <div class="chat-section" id="chat-section">
+      <div class="section-eyebrow">Your Color Consultation</div>
+      <div class="section-title">Ask anything about your hair</div>
+      <div class="section-sub">Upload a photo, ask a question, or let us guide you through it.</div>
+
+      <div class="chat-window">
+        <div class="chat-topbar">
+          <div class="chat-avatar">✂</div>
+          <div>
+            <div class="chat-name">The Color Fix</div>
+            <div class="chat-status">Online now</div>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg msg-bot">
+            <div class="msg-av">✂</div>
+            <div class="msg-bubble" id="welcomeMsg"></div>
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <div id="imagePreview" style="display:none;" class="upload-preview">
+            <img id="previewImg" src="" alt="Hair photo" />
+            <span id="previewName" style="flex:1;"></span>
+            <button class="upload-remove" onclick="removeImage()">✕</button>
+          </div>
+          <div class="chat-input-inner">
+            <button class="upload-btn" onclick="document.getElementById('imageUpload').click()" title="Upload hair photo">📷</button>
+            <input type="file" id="imageUpload" accept="image/*" style="display:none;" onchange="handleImage(event)" />
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ask about your hair color..." />
+            <button class="chat-send" id="sendBtn" onclick="sendMessage()">→</button>
           </div>
         </div>
       </div>
-      <div class="chat-input-row">
-        <div id="imagePreview" style="display:none;" class="upload-preview">
-          <img id="previewImg" src="" alt="Hair photo" />
-          <span id="previewName" style="flex:1;"></span>
-          <button class="upload-remove" onclick="removeImage()">✕</button>
-        </div>
-        <div class="chat-input-inner">
-          <button class="upload-btn" onclick="document.getElementById('imageUpload').click()" title="Upload hair photo">📷</button>
-          <input type="file" id="imageUpload" accept="image/*" style="display:none;" onchange="handleImage(event)" />
-          <input type="text" class="chat-input" id="chatInput" placeholder="Describe your hair or upload a photo..." />
-          <button class="chat-send" id="sendBtn" onclick="sendMessage()">→</button>
-        </div>
+
+      <div class="quick-prompts">
+        <button class="quick-btn" onclick="usePrompt(this)">Match my color 📸</button>
+        <button class="quick-btn" onclick="usePrompt(this)">Guide me through it ✨</button>
+        <button class="quick-btn" onclick="usePrompt(this)">I want to go blonde 🌟</button>
+        <button class="quick-btn" onclick="usePrompt(this)">My dye turned orange 😬</button>
+        <button class="quick-btn" onclick="usePrompt(this)">Fix brassiness 💛</button>
       </div>
     </div>
-    <div class="quick-prompts">
-      <button class="quick-btn" onclick="usePrompt(this)">Match my color 📸</button>
-      <button class="quick-btn" onclick="usePrompt(this)">I want to go blonde 🌟</button>
-      <button class="quick-btn" onclick="usePrompt(this)">My dye turned orange 😬</button>
-      <button class="quick-btn" onclick="usePrompt(this)">Best drugstore red?</button>
-      <button class="quick-btn" onclick="usePrompt(this)">How to fix brassiness?</button>
-    </div>
-  </div>
-</section>
 
+    <!-- Steps -->
+    <div class="steps-section" id="steps-section">
+      <div class="section-eyebrow">The Process</div>
+      <div class="section-title" style="margin-bottom:24px;">Your transformation, step by step</div>
 
-<!-- Signup Section -->
-<section id="signup" style="background: var(--ink); padding: 80px 24px;">
-  <div style="max-width: 560px; margin: 0 auto; text-align: center;">
-    <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pink-light); margin-bottom: 14px; font-weight: 600;">Free Forever</div>
-    <h2 style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(26px, 5vw, 38px); color: var(--cream); line-height: 1.15; margin-bottom: 12px;">Get unlimited access.<br><span style="color: var(--pink-light); font-style: italic;">Free, always.</span></h2>
-    <p style="font-size: 15px; color: rgba(255,251,240,0.5); line-height: 1.65; margin-bottom: 32px; font-style: italic; font-family: 'Georgia', serif;">No credit card. No catch. Just expert hair color advice whenever you need it.</p>
-    <div style="display: flex; gap: 10px; max-width: 420px; margin: 0 auto 12px;">
-      <input type="email" id="sectionEmailInput" placeholder="your@email.com" style="flex:1; padding: 14px 18px; border-radius: 100px; border: 1.5px solid rgba(255,251,240,0.15); background: rgba(255,255,255,0.07); font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--cream); outline: none;" onfocus="this.style.borderColor='rgba(232,53,122,0.6)'" onblur="this.style.borderColor='rgba(255,251,240,0.15)'" />
-      <button onclick="submitSectionEmail()" id="sectionEmailBtn" style="padding: 14px 24px; background: var(--pink); color: white; border: none; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap; transition: all 0.2s;">Get Access →</button>
-    </div>
-    <div id="sectionEmailError" style="font-size: 12px; color: #ff6ba8; display: none; margin-bottom: 8px;"></div>
-    <div id="sectionEmailSuccess" style="font-size: 14px; color: var(--mint); display: none; font-style: italic; font-family: 'Georgia', serif;">✓ You're in! Unlimited access unlocked.</div>
-    <p style="font-size: 11px; color: rgba(255,251,240,0.25); margin-top: 14px; letter-spacing: 0.03em;">No spam. Unsubscribe anytime. We hate inbox clutter too.</p>
-  </div>
-</section>
-
-<section id="how">
-  <div class="section-inner">
-    <div class="sec-eyebrow">How It Works</div>
-    <div class="sec-title">Expert advice in under 60 seconds</div>
-    <div class="steps-grid">
-      <div class="step-card"><div class="step-number">1</div><div class="step-title">Tell us about your hair</div><div class="step-desc">Current color, condition, whether it's been colored before. Just chat naturally — no forms, no quizzes.</div></div>
-      <div class="step-card"><div class="step-number">2</div><div class="step-title">Share your goal</div><div class="step-desc">Going lighter, covering roots, fixing a disaster, trying something new for the first time — whatever you want.</div></div>
-      <div class="step-card"><div class="step-number">3</div><div class="step-title">Get your personalized fix</div><div class="step-desc">Exact product recommendations, step-by-step instructions, and honest advice about what needs a professional.</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="why">
-  <div class="section-inner">
-    <div class="sec-eyebrow">Why The Color Fix</div>
-    <div class="sec-title">Everything bad hair advice isn't</div>
-    <div class="why-grid">
-      <div class="why-card"><span class="why-icon">🎯</span><div class="why-title">Specific Product Recs</div><div class="why-desc">Real product names you can actually buy at the drugstore, Sally's, or Ulta. No vague "try a toner" advice.</div></div>
-      <div class="why-card"><span class="why-icon">🛡️</span><div class="why-title">Honest Safety Checks</div><div class="why-desc">We'll tell you when something is a job for a pro. Hair health always comes first — no exceptions.</div></div>
-      <div class="why-card"><span class="why-icon">🆘</span><div class="why-title">Color Emergency Help</div><div class="why-desc">Dye went wrong? Brassiness, patchiness, unexpected results — we help you fix it fast.</div></div>
-      <div class="why-card"><span class="why-icon">💸</span><div class="why-title">Every Budget</div><div class="why-desc">Drugstore, mid-range, or professional products. Great results don't require a $200 salon trip.</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="pricing">
-  <div class="section-inner">
-    <div style="text-align:center;">
-      <div class="sec-eyebrow">Pricing</div>
-      <div class="sec-title">Start free. Upgrade when you're ready.</div>
-    </div>
-    <div class="pricing-wrap">
-      <div class="price-card">
-        <div class="price-tier">Free</div>
-        <div class="price-num">$0</div>
-        <div class="price-per">forever</div>
-        <ul class="price-list">
-          <li>3 consultations/month</li>
-          <li>Product recommendations</li>
-          <li>Basic how-to guidance</li>
-          <li>Color emergency help</li>
-        </ul>
-        <button class="price-btn outline">Get Started Free</button>
+      <div class="step-card">
+        <div class="step-num-badge">Step 1</div>
+        <div class="step-title">Get your consultation</div>
+        <div class="step-desc">Tell us about your hair or upload a photo. We'll figure out your color level, undertones, and exactly what products you need.</div>
       </div>
-      <div class="price-card pro">
-        <div class="price-popular">Most Popular</div>
-        <div class="price-tier">Pro</div>
-        <div class="price-num">$9</div>
-        <div class="price-per">per month</div>
-        <ul class="price-list">
-          <li>Unlimited consultations</li>
-          <li>Full product guide + links</li>
-          <li>Step-by-step application plans</li>
-          <li>Color correction support</li>
-          <li>Save your hair history</li>
-        </ul>
-        <button class="price-btn filled">Start Pro — $9/mo</button>
+
+      <div class="rest-card">
+        <span class="rest-icon">☕</span>
+        <div class="rest-title">Rest period — make a drink</div>
+        <div class="rest-desc">Before you start, take a moment. Get your supplies together. Put on your playlist. This is your time.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num-badge">Step 2</div>
+        <div class="step-title">Prep your hair</div>
+        <div class="step-desc">Set the mood. Get your supplies together. Put the music on. Maybe pour a drink. Invite your friend if you want company. This is YOUR moment before the transformation begins.</div>
+      </div>
+
+      <div class="rest-card">
+        <span class="rest-icon">🎵</span>
+        <div class="rest-title">Rest period — processing time</div>
+        <div class="rest-desc">Color is processing. This is your moment — listen to your playlist, breathe, just be. We'll let you know when it's time.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num-badge">Step 3</div>
+        <div class="step-title">The reveal</div>
+        <div class="step-desc">Rinse, condition, dry, and take it in. You did this — in your own space, on your own time, exactly the way you wanted. That's the whole point. The Color Fix will be right here whenever you're ready to do it again.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<footer>
-  <div class="footer-logo">The <span>Color</span> Fix</div>
-  <div class="footer-tagline">Your hair. Your rules. We've got the fix.</div>
-  <div class="footer-note">Always patch test 48hrs before coloring · Some situations need a professional — we'll always tell you when</div>
-  <div class="footer-note" style="margin-top:8px; font-size:10px; opacity:0.5; line-height:1.6;">
-    <strong style="color:var(--pink-light);">Affiliate Disclosure:</strong> The Color Fix participates in the Amazon Associates Program. We earn a small commission when you purchase through our links at no extra cost to you. We only recommend products we believe in.
-  </div>
-  <div class="footer-note" style="margin-top:8px; font-size:10px; opacity:0.4; line-height:1.6;">
-    <strong>Disclaimer:</strong> The Color Fix provides hair color guidance for informational and educational purposes only. Results vary based on individual hair type, condition, and history. We are not liable for any hair damage, color results, or adverse reactions. Always perform a patch test 48 hours before coloring. By using this service you acknowledge that you proceed at your own risk. When in doubt, consult a licensed professional stylist.
-  </div>
-  <div style="margin-top:16px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
-    <a href="#" onclick="showModal('privacy')" style="font-size:11px; color:rgba(255,255,255,0.3); text-decoration:underline; cursor:pointer;">Privacy Policy</a>
-    <a href="#" onclick="showModal('terms')" style="font-size:11px; color:rgba(255,255,255,0.3); text-decoration:underline; cursor:pointer;">Terms of Service</a>
-    <a href="#" onclick="showModal('affiliate')" style="font-size:11px; color:rgba(255,255,255,0.3); text-decoration:underline; cursor:pointer;">Affiliate Disclosure</a>
-  </div>
-</footer>
+    <!-- Signup -->
+    <div class="signup-section">
+      <div class="section-eyebrow">Free Forever</div>
+      <div class="section-title" style="margin-bottom:8px;">Get unlimited access</div>
+      <p style="font-size:14px; color:var(--muted); margin-bottom:24px; font-style:italic;">No appointment. No waiting room. Just your time, your space, and your vibe.</p>
+      <div class="signup-input-row">
+        <input type="email" class="signup-input" id="signupEmail" placeholder="your@email.com" />
+        <button class="signup-btn" onclick="submitSignup()">Get Access →</button>
+      </div>
+      <div id="signupError" style="font-size:12px; color:#E8357A; display:none; margin-top:6px;"></div>
+      <div id="signupSuccess" style="font-size:14px; color:#00C48C; display:none; margin-top:8px; font-style:italic;">✓ You're in! Unlimited access unlocked.</div>
+      <p style="font-size:11px; color:var(--muted); margin-top:12px; opacity:0.6;">No spam. Unsubscribe anytime.</p>
+    </div>
 
-<!-- Legal Modals -->
-<div id="legalModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; overflow-y:auto; padding:24px;">
-  <div style="background:#fff; max-width:600px; margin:0 auto; border-radius:20px; padding:32px; position:relative;">
-    <button onclick="closeModal()" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; cursor:pointer; color:#8A7080;">✕</button>
+    <!-- Footer -->
+    <footer>
+      <div class="footer-logo">The <span>Color</span> Fix</div>
+      <div class="footer-tagline">Your time. Your space. Your vibe.</div>
+      <div class="footer-note">Always patch test 48hrs before coloring · Some situations need a professional — we'll always tell you when</div>
+      <div class="footer-note"><strong>Affiliate Disclosure:</strong> We participate in the Amazon Associates Program and earn commissions on qualifying purchases at no extra cost to you.</div>
+      <div class="footer-note">HairByBethanyLLC is not liable for any hair damage, color results, or adverse reactions. By using this service you proceed at your own risk.</div>
+      <div class="footer-links">
+        <button class="footer-link" onclick="showModal('privacy')">Privacy Policy</button>
+        <button class="footer-link" onclick="showModal('terms')">Terms of Service</button>
+        <button class="footer-link" onclick="showModal('affiliate')">Affiliate Disclosure</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- Email Gate Popup -->
+<div class="email-overlay" id="emailOverlay">
+  <div class="email-modal">
+    <div id="emailForm">
+      <div class="email-modal-icon">✂️</div>
+      <div class="email-modal-title">You've used your 3 free consultations</div>
+      <div class="email-modal-sub">Enter your email for unlimited free access — no credit card needed, ever.</div>
+      <div class="email-input-row">
+        <input type="email" class="email-input" id="emailInput" placeholder="your@email.com" />
+        <button class="email-submit" id="emailSubmitBtn" onclick="submitEmail()">Unlock →</button>
+      </div>
+      <div class="email-error" id="emailError"></div>
+      <button class="email-skip" onclick="skipEmail()">No thanks, I'll use my remaining free questions</button>
+    </div>
+    <div class="email-success" id="emailSuccess">
+      <div class="email-success-icon">🎉</div>
+      <div class="email-success-title">You're in!</div>
+      <div class="email-success-sub">Unlimited access unlocked. Welcome to The Color Fix.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Legal Modal -->
+<div id="legalModal">
+  <div class="legal-inner">
+    <button class="legal-close" onclick="closeModal()">✕</button>
     <div id="modalContent"></div>
   </div>
 </div>
 
 <script>
-// Hair level chart data
-const HAIR_LEVELS = [
-  { level: 1, name: 'Black', color: '#0a0a0a' },
-  { level: 2, name: 'Darkest Brown', color: '#1a0f0a' },
-  { level: 3, name: 'Dark Brown', color: '#2c1a0e' },
-  { level: 4, name: 'Medium Brown', color: '#3d2314' },
-  { level: 5, name: 'Light Brown', color: '#5c3317' },
-  { level: 6, name: 'Dark Blonde', color: '#7d4e1f' },
-  { level: 7, name: 'Medium Blonde', color: '#a06830' },
-  { level: 8, name: 'Light Blonde', color: '#c49050' },
-  { level: 9, name: 'Very Light Blonde', color: '#ddb870' },
-  { level: 10, name: 'Platinum', color: '#f0d898' },
-];
-
-const CONSULTATION_STEPS = [
-  {
-    question: "What's your natural hair color level? Pick the one that matches you closest:",
-    type: 'level_chart'
+// ============ VIBE CONFIG ============
+const VIBES = {
+  morning: {
+    name: '☀️ Morning Party',
+    spotifyUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX6VdMW310YC7',
+    welcome: "Good morning ☀️ Welcome to The Color Fix. The music is playing, the light is golden, and we're about to make your hair look incredible. Tell me about your hair or upload a photo — let's get started! 💛\n\n⚠️ The Color Fix provides general guidance only. Results vary. Always patch test 48hrs before coloring.",
+    products: "warm, sun-kissed tones — honey blonde, copper, golden brown",
+    class: 'vibe-morning'
   },
-  {
-    question: "Has your hair been color treated before?",
-    type: 'options',
-    options: ['Virgin hair (never colored)', 'Box dye before', 'Professionally colored', 'Bleached before']
+  boost: {
+    name: '⚡ Boost',
+    spotifyUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DXdxcBWuJkbcy',
+    welcome: "Let's GO ⚡ We're shifting your energy RIGHT NOW. Tell me about your hair — what are we working with and what do we want? Fast answers, bold moves. 💙\n\n⚠️ The Color Fix provides general guidance only. Always patch test 48hrs before coloring.",
+    products: "bold, high-impact color — vivid blues, electric reds, dramatic contrast",
+    class: 'vibe-boost'
   },
-  {
-    question: "What's your hair texture like?",
-    type: 'options',
-    options: ['Fine & silky', 'Medium & normal', 'Thick & coarse', 'Curly or coily']
+  soft: {
+    name: '🕯️ Soft Night',
+    spotifyUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX3rxVfibe1L0',
+    welcome: "Welcome in 🕯️ This is your soft, quiet time. No rush, no pressure — just you and your hair. Tell me what you're working with and what you dream of, and we'll figure it out together. 🌸\n\n⚠️ The Color Fix provides general guidance only. Always patch test 48hrs before coloring.",
+    products: "soft, dimensional tones — rose gold, dusty mauve, soft brunette",
+    class: 'vibe-soft'
   },
-  {
-    question: "What's your hair goal?",
-    type: 'options',
-    options: ['Go lighter / blonde', 'Go darker', 'Cover grays', 'Try a fun color', 'Fix a color problem', 'Touch up roots']
+  mystical: {
+    name: '🔮 Mystical',
+    spotifyUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX3rxVfibe1L0',
+    welcome: "Welcome, seeker 🔮 Your transformation begins here. Tell me about your hair — your current color, your vision, what you want to call in. We'll chart the path together. ✨\n\n⚠️ The Color Fix provides general guidance only. Always patch test 48hrs before coloring.",
+    products: "mystical, otherworldly tones — deep violet, midnight blue, celestial silver",
+    class: 'vibe-mystical'
+  },
+  dark: {
+    name: '🖤 Dark & Sultry',
+    spotifyUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX4OzrY981I1W',
+    welcome: "Welcome 🖤 Let's get into it. Tell me about your hair — what you have and what you want. Dark, rich, dramatic. We'll find your perfect version. 🌹\n\n⚠️ The Color Fix provides general guidance only. Always patch test 48hrs before coloring.",
+    products: "deep, rich tones — espresso brown, burgundy, jet black, dark cherry",
+    class: 'vibe-dark'
+  },
+  electric: {
+    name: '💥 Electric',
+    spotifyUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX6J5NfMJS675',
+    welcome: "LET'S GO 💥 No rules. No limits. Tell me what you want and we'll figure out how to make it happen. The wilder the better. ⚡🔮\n\n⚠️ The Color Fix provides general guidance only. Always patch test 48hrs before coloring.",
+    products: "vivid, statement color — neon pink, electric blue, UV reactive, rainbow",
+    class: 'vibe-electric'
   }
-];
+};
 
-let consultationStep = 0;
-let consultationAnswers = {};
-let consultationMode = false;
-
-function startConsultation() {
-  consultationMode = true;
-  consultationStep = 0;
-  consultationAnswers = {};
-  addBotMessage("Perfect! I'll walk you through it step by step — just like a real salon consultation. 💕");
-  setTimeout(() => showConsultationStep(), 600);
-}
-
-function skipToChat() {
-  addBotMessage("Got it! Tell me what you're working with and what you want to do — and feel free to upload a photo of your hair too! 📷");
-}
-
-function showConsultationStep() {
-  const step = CONSULTATION_STEPS[consultationStep];
-  const messagesEl = document.getElementById('chatMessages');
-
-  if (step.type === 'level_chart') {
-    const chartHTML = `
-      <div style="font-weight:500;margin-bottom:12px;">${step.question}</div>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:4px;">
-        ${HAIR_LEVELS.map(l => `
-          <button onclick="selectLevel(${l.level}, '${l.name}')" style="
-            background:${l.color};
-            border:2px solid transparent;
-            border-radius:10px;
-            padding:8px 4px;
-            cursor:pointer;
-            transition:all 0.2s;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            gap:4px;
-          " onmouseover="this.style.borderColor='#E8357A'" onmouseout="this.style.borderColor='transparent'">
-            <span style="color:${l.level > 5 ? '#333' : '#fff'};font-size:11px;font-weight:700;">${l.level}</span>
-            <span style="color:${l.level > 5 ? '#333' : '#fff'};font-size:9px;text-align:center;line-height:1.2;">${l.name}</span>
-          </button>
-        `).join('')}
-      </div>
-      <p style="font-size:11px;color:#8A7080;margin-top:8px;">Level 1 = darkest, Level 10 = lightest</p>
-    `;
-    messagesEl.innerHTML += `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble" style="max-width:90%;">${chartHTML}</div></div>`;
-  } else {
-    const optionsHTML = `
-      <div style="font-weight:500;margin-bottom:12px;">${step.question}</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        ${step.options.map(opt => `
-          <button onclick="selectOption('${opt}')" style="
-            background:white;
-            border:1.5px solid rgba(232,53,122,0.2);
-            border-radius:12px;
-            padding:10px 14px;
-            cursor:pointer;
-            font-size:14px;
-            color:#3D2B38;
-            text-align:left;
-            font-family:'DM Sans',sans-serif;
-            transition:all 0.2s;
-          " onmouseover="this.style.borderColor='#E8357A';this.style.background='#FFF0F5'" onmouseout="this.style.borderColor='rgba(232,53,122,0.2)';this.style.background='white'">${opt}</button>
-        `).join('')}
-      </div>
-    `;
-    messagesEl.innerHTML += `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble" style="max-width:90%;">${optionsHTML}</div></div>`;
-  }
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-}
-
-function selectLevel(level, name) {
-  consultationAnswers.level = level;
-  consultationAnswers.levelName = name;
-  addUserMessage(`Level ${level} — ${name}`);
-  nextConsultationStep();
-}
-
-function selectOption(option) {
-  const stepKey = ['treatment', 'texture', 'goal'][consultationStep - 1];
-  consultationAnswers[stepKey] = option;
-  addUserMessage(option);
-  nextConsultationStep();
-}
-
-function nextConsultationStep() {
-  consultationStep++;
-  if (consultationStep < CONSULTATION_STEPS.length) {
-    setTimeout(() => showConsultationStep(), 500);
-  } else {
-    setTimeout(() => finishConsultation(), 500);
-  }
-}
-
-function finishConsultation() {
-  const { level, levelName, treatment, texture, goal } = consultationAnswers;
-  const summary = `My natural hair is Level ${level} (${levelName}). It has been: ${treatment}. My texture is: ${texture}. My goal is: ${goal}. Based on all of this, what do you recommend for me?`;
-  addBotMessage("Perfect — I have everything I need! Let me put together your personalized recommendation... 💕");
-  setTimeout(() => {
-    messages.push({ role: 'user', content: summary });
-    callAPI();
-  }, 800);
-}
-
-function addUserMessage(text) {
-  const messagesEl = document.getElementById('chatMessages');
-  messagesEl.innerHTML += `<div class="msg msg-user"><div class="msg-avatar">YOU</div><div class="msg-bubble">${text}</div></div>`;
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-}
-
-function addBotMessage(text) {
-  const messagesEl = document.getElementById('chatMessages');
-  messagesEl.innerHTML += `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble">${formatText(text)}</div></div>`;
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-}
-
-async function callAPI() {
-  const messagesEl = document.getElementById('chatMessages');
-  const typingId = 'typing-' + Date.now();
-  messagesEl.innerHTML += `<div class="msg msg-bot" id="${typingId}"><div class="msg-avatar">✂</div><div class="msg-bubble" style="padding:14px 16px;"><div class="typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>`;
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-  try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system: SYSTEM, messages: messages })
-    });
-    const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Something went wrong — try again!';
-    messages.push({ role: 'assistant', content: reply });
-
-    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble">${formatText(reply)}</div></div>`;
-  } catch(e) {
-    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-avatar">✂</div><div class="msg-bubble">Error: ${e.message}</div></div>`;
-  }
-  messagesEl.scrollTop = messagesEl.scrollHeight;
-}
-
-const SYSTEM = `You are an expert AI hair color consultant with 21+ years of professional hairstylist experience. You help everyday people — especially teens and young adults — find the right at-home hair color and guide them safely.
-
-Your personality: warm, fun, encouraging and real. Talk like a knowledgeable best friend who happens to be a master colorist. You LOVE helping people do their own hair at home and believe most people can achieve great results themselves.
-
-COLOR MATCHING (when user uploads a photo):
-- Analyze their current hair color carefully — identify the level (1-10), tone (warm/cool/neutral), and undertones
-- Identify any existing color, highlights, damage, or chemical treatments visible
-- Based on their goal, recommend the exact shade number and brand they should buy
-- Explain WHY that shade will work for their specific hair
-- Mention what undertones to watch for and how to neutralize them if needed
-
-ALWAYS include a tools checklist for any technique. Format it as:
-🛠️ What you'll need:
-• [tool 1]
-• [tool 2]
-
-For foils always recommend Framar foils. For applicator bottles recommend Framar or Colortrak. For tint brushes recommend Framar or Diane. Always mention gloves, a timer, and an old towel or cape.
-
-PRODUCT RECOMMENDATIONS — VERY IMPORTANT:
-Every time you recommend a product, include a clickable Amazon link using this exact format:
-[Product Name](https://www.amazon.com/s?k=Product+Name+Here&tag=hairbybetha09-20)
-
-Examples:
-[Wella T18 Toner](https://www.amazon.com/s?k=Wella+T18+Toner&tag=hairbybetha09-20)
-[Framar Foils](https://www.amazon.com/s?k=Framar+Foils&tag=hairbybetha09-20)
-
-Always link every product you mention. Never mention a product without linking it.
-
-Your approach:
-- Be enthusiastic and encouraging about at-home color
-- Give specific, real product recommendations with Amazon links
-- Give clear step by step instructions
-- Only suggest a professional for truly complex situations: severe damage, more than 3 levels of lift on compromised hair, or major color corrections
-- For everything else — guide them confidently through it
-- Always mention a patch test and strand test but keep it brief
-- Keep responses fun and conversational
-- End with an encouraging follow up question`;
-
+let currentVibe = null;
 let messages = [];
 let loading = false;
 let currentImage = null;
+let freeQuestionsUsed = parseInt(localStorage.getItem('colorfix_questions') || '0');
+let emailUnlocked = localStorage.getItem('colorfix_unlocked') === 'true';
+let consultationMode = false;
+let consultStep = 0;
+let consultAnswers = {};
+
+// ============ PORTAL ANIMATION ============
+const canvas = document.getElementById('portal-canvas');
+const ctx = canvas.getContext('2d');
+let portals = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function makePortal() {
+  return {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 60 + 20,
+    alpha: 0,
+    maxAlpha: Math.random() * 0.08 + 0.02,
+    phase: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.008 + 0.003,
+    color: ['255,160,50','100,180,255','196,120,138','155,89,255','255,0,255','196,48,74'][Math.floor(Math.random()*6)]
+  };
+}
+
+function animatePortals() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  portals.forEach(p => {
+    p.phase += p.speed;
+    p.alpha = p.maxAlpha * (Math.sin(p.phase) * 0.5 + 0.5);
+    const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+    grad.addColorStop(0, `rgba(${p.color},${p.alpha * 2})`);
+    grad.addColorStop(0.5, `rgba(${p.color},${p.alpha})`);
+    grad.addColorStop(1, `rgba(${p.color},0)`);
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+  });
+  requestAnimationFrame(animatePortals);
+}
+
+resizeCanvas();
+for (let i = 0; i < 8; i++) portals.push(makePortal());
+animatePortals();
+window.addEventListener('resize', resizeCanvas);
+
+// ============ VIBE FUNCTIONS ============
+function setVibe(vibe, emoji, name, color) {
+  currentVibe = vibe;
+  const v = VIBES[vibe];
+
+  // Apply body class
+  document.body.className = v.class;
+
+  // Update vibe bar
+  document.getElementById('vibeBarName').textContent = v.name;
+
+  // Set welcome message
+  document.getElementById('welcomeMsg').innerHTML = formatText(v.welcome);
+
+  // Set Spotify playlist
+  document.getElementById('spotifyEmbed').src = v.spotifyUrl + '?utm_source=generator&theme=0';
+
+  // Show main, hide picker
+  document.getElementById('screen-picker').style.display = 'none';
+  document.getElementById('screen-main').classList.add('active');
+
+  window.scrollTo(0, 0);
+}
+
+function changeVibe() {
+  document.getElementById('screen-picker').style.display = 'flex';
+  document.getElementById('screen-main').classList.remove('active');
+  document.body.className = '';
+  messages = [];
+  currentVibe = null;
+}
+
+function scrollToChat() {
+  document.getElementById('chat-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function scrollToSteps() {
+  document.getElementById('steps-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ============ CHAT FUNCTIONS ============
+function getSystem() {
+  const v = VIBES[currentVibe] || VIBES.morning;
+  return `You are an expert AI hair color consultant with 21+ years of professional hairstylist experience. You help everyday people find the right at-home hair color safely.
+
+Current vibe: ${v.name}. Match this energy in your tone — ${currentVibe === 'morning' ? 'warm, joyful, sacred energy' : currentVibe === 'boost' ? 'fast, electric, get-to-the-point energy' : currentVibe === 'soft' ? 'gentle, candlelit, nurturing energy' : currentVibe === 'mystical' ? 'cosmic, ceremonial, poetic energy' : currentVibe === 'dark' ? 'sultry, rich, dramatic energy' : 'bold, neon, no-rules energy'}.
+
+Recommended color direction for this vibe: ${v.products}.
+
+COLOR MATCHING: When user uploads a photo, analyze level (1-10), tone, undertones, existing treatments. Recommend exact products.
+
+TOOLS: Always include a 🛠️ tools checklist. Recommend Framar foils, Framar or Colortrak applicator bottles, gloves, timer, old towel.
+
+PRODUCT LINKS: Every product recommendation MUST include an Amazon affiliate link:
+[Product Name](https://www.amazon.com/s?k=Product+Name&tag=hairbybetha09-20)
+
+APPROACH:
+- Be enthusiastic and encouraging about at-home color
+- Only suggest a professional for: severe damage, 3+ levels of lift on compromised hair, major corrections
+- Always mention patch test and strand test briefly
+- End with an encouraging follow-up question`;
+}
+
+function checkEmailGate() {
+  if (emailUnlocked) return true;
+  freeQuestionsUsed++;
+  localStorage.setItem('colorfix_questions', freeQuestionsUsed);
+  if (freeQuestionsUsed >= 3) {
+    document.getElementById('emailOverlay').classList.add('visible');
+    return false;
+  }
+  return true;
+}
 
 function handleImage(event) {
   const file = event.target.files[0];
@@ -678,15 +1217,30 @@ function removeImage() {
 }
 
 function usePrompt(btn) {
-  document.getElementById('chatInput').value = btn.textContent.trim();
+  const text = btn.textContent.trim();
+  if (text.includes('Guide me through it')) {
+    startConsultation();
+    return;
+  }
+  document.getElementById('chatInput').value = text;
   sendMessage();
 }
 
 function formatText(text) {
   return text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--pink);text-decoration:underline;font-weight:500;">$1</a>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--accent);text-decoration:underline;font-weight:500;">$1</a>')
     .replace(/\n/g, '<br>');
+}
+
+function addMsg(role, text, imgSrc) {
+  const el = document.getElementById('chatMessages');
+  const isUser = role === 'user';
+  const imgHTML = imgSrc ? `<img src="${imgSrc}" style="width:100px;height:70px;object-fit:cover;border-radius:8px;display:block;margin-bottom:6px;">` : '';
+  el.innerHTML += isUser
+    ? `<div class="msg msg-user"><div class="msg-av">YOU</div><div class="msg-bubble">${imgHTML}${text}</div></div>`
+    : `<div class="msg msg-bot"><div class="msg-av">✂</div><div class="msg-bubble">${formatText(text)}</div></div>`;
+  el.scrollTop = el.scrollHeight;
 }
 
 async function sendMessage() {
@@ -694,13 +1248,14 @@ async function sendMessage() {
   const text = input.value.trim();
   if ((!text && !currentImage) || loading) return;
   if (!checkEmailGate()) return;
+
   loading = true;
   input.value = '';
   document.getElementById('sendBtn').disabled = true;
-  const messagesEl = document.getElementById('chatMessages');
 
+  const messagesEl = document.getElementById('chatMessages');
   let userContent;
-  let displayText = text || 'Please analyze my hair color from this photo.';
+  const displayText = text || 'Please analyze my hair color from this photo.';
 
   if (currentImage) {
     const base64 = currentImage.split(',')[1];
@@ -709,211 +1264,254 @@ async function sendMessage() {
       { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
       { type: 'text', text: text || 'Please analyze my hair color from this photo and tell me what color level and tone I have, and what products would work best for my goal.' }
     ];
-    messagesEl.innerHTML += `<div class="msg msg-user"><div class="msg-avatar">YOU</div><div class="msg-bubble"><img src="${currentImage}" style="width:120px;height:80px;object-fit:cover;border-radius:8px;display:block;margin-bottom:6px;">${displayText}</div></div>`;
+    addMsg('user', displayText, currentImage);
     removeImage();
   } else {
     userContent = text;
-    messagesEl.innerHTML += `<div class="msg msg-user"><div class="msg-avatar">YOU</div><div class="msg-bubble">${text}</div></div>`;
+    addMsg('user', text);
   }
 
   messages.push({ role: 'user', content: userContent });
-  await callAPI();
+
+  const typingId = 'typing-' + Date.now();
+  messagesEl.innerHTML += `<div class="msg msg-bot" id="${typingId}"><div class="msg-av">✂</div><div class="msg-bubble" style="padding:12px 14px;"><div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div></div></div>`;
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system: getSystem(), messages })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Something went wrong — try again!';
+    messages.push({ role: 'assistant', content: reply });
+    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-av">✂</div><div class="msg-bubble">${formatText(reply)}</div></div>`;
+  } catch(e) {
+    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-av">✂</div><div class="msg-bubble">Connection issue — please try again!</div></div>`;
+  }
+
   loading = false;
   document.getElementById('sendBtn').disabled = false;
+  messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
-document.getElementById('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('chatInput') === document.activeElement) sendMessage();
+});
 
-// Email capture system
-let freeQuestionsUsed = 0;
-const FREE_LIMIT = 3;
-let emailUnlocked = localStorage.getItem('colorfix_unlocked') === 'true';
+// ============ CONSULTATION FLOW ============
+const HAIR_LEVELS = [
+  { level: 1, name: 'Black', bg: '#0a0a0a', text: '#fff' },
+  { level: 2, name: 'Darkest Brown', bg: '#1a0f0a', text: '#fff' },
+  { level: 3, name: 'Dark Brown', bg: '#2c1a0e', text: '#fff' },
+  { level: 4, name: 'Medium Brown', bg: '#3d2314', text: '#fff' },
+  { level: 5, name: 'Light Brown', bg: '#5c3317', text: '#fff' },
+  { level: 6, name: 'Dark Blonde', bg: '#7d4e1f', text: '#fff' },
+  { level: 7, name: 'Medium Blonde', bg: '#a06830', text: '#fff' },
+  { level: 8, name: 'Light Blonde', bg: '#c49050', text: '#1A1018' },
+  { level: 9, name: 'Very Light Blonde', bg: '#ddb870', text: '#1A1018' },
+  { level: 10, name: 'Platinum', bg: '#f0d898', text: '#1A1018' },
+];
 
-function checkEmailGate() {
-  if (emailUnlocked) return true;
-  freeQuestionsUsed++;
-  localStorage.setItem('colorfix_questions', freeQuestionsUsed);
-  if (freeQuestionsUsed >= FREE_LIMIT) {
-    showEmailPopup();
-    return false;
+function startConsultation() {
+  consultStep = 0;
+  consultAnswers = {};
+  consultationMode = true;
+  document.getElementById('chat-section').scrollIntoView({ behavior: 'smooth' });
+
+  setTimeout(() => {
+    const el = document.getElementById('chatMessages');
+    el.innerHTML += `
+      <div class="msg msg-bot">
+        <div class="msg-av">✂</div>
+        <div class="msg-bubble">
+          <strong>Let's find your perfect color!</strong> ✨<br><br>
+          First things first — how are you doing this today?
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
+            <button onclick="pickPartner('solo')" style="padding:14px 16px;border:1.5px solid var(--border);border-radius:14px;background:var(--bg2);cursor:pointer;font-size:14px;color:var(--ink);text-align:left;font-family:'DM Sans',sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:10px;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+              <span style="font-size:22px;">🙋</span>
+              <span><strong>Flying solo</strong><br><span style="font-size:12px;opacity:0.65;">I've got this myself</span></span>
+            </button>
+            <button onclick="pickPartner('besties')" style="padding:14px 16px;border:1.5px solid var(--border);border-radius:14px;background:var(--bg2);cursor:pointer;font-size:14px;color:var(--ink);text-align:left;font-family:'DM Sans',sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:10px;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+              <span style="font-size:22px;">👯</span>
+              <span><strong>Besties doing it together</strong><br><span style="font-size:12px;opacity:0.65;">We've got each other</span></span>
+            </button>
+          </div>
+        </div>
+      </div>`;
+    el.scrollTop = el.scrollHeight;
+  }, 400);
+}
+
+function pickPartner(type) {
+  consultAnswers.partner = type;
+  const label = type === 'solo' ? '🙋 Flying solo' : '👯 Besties doing it together';
+  addMsg('user', label);
+  setTimeout(() => showLevelChart(), 500);
+}
+
+function showLevelChart() {
+  const el = document.getElementById('chatMessages');
+  const partnerMsg = consultAnswers.partner === 'besties' 
+    ? "Love it! Hair day with your bestie is the BEST day 🎀 Now let's figure out your color.<br><br>What's your natural hair level? Pick the closest match:"
+    : "You've got this! 💪 Let's figure out your perfect color.<br><br>What's your natural hair level? Pick the closest match:";
+  
+  el.innerHTML += `
+    <div class="msg msg-bot">
+      <div class="msg-av">✂</div>
+      <div class="msg-bubble">
+        ${partnerMsg}
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px;">
+          ${HAIR_LEVELS.map(l => `
+            <div onclick="pickLevel(${l.level},'${l.name}')" style="background:${l.bg};border-radius:10px;padding:8px 4px;cursor:pointer;text-align:center;border:2px solid transparent;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='transparent'">
+              <span style="color:${l.text};font-size:12px;font-weight:700;display:block;">${l.level}</span>
+              <span style="color:${l.text};font-size:8px;display:block;line-height:1.2;">${l.name}</span>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  el.scrollTop = el.scrollHeight;
+}
+
+function pickLevel(level, name) {
+  consultAnswers.level = level;
+  consultAnswers.levelName = name;
+  addMsg('user', `Level ${level} — ${name}`);
+  setTimeout(() => showConsultStep2(), 500);
+}
+
+function showConsultStep2() {
+  const el = document.getElementById('chatMessages');
+  el.innerHTML += `
+    <div class="msg msg-bot">
+      <div class="msg-av">✂</div>
+      <div class="msg-bubble">
+        Got it! Has your hair been colored before?
+        <div style="display:flex;flex-direction:column;gap:7px;margin-top:10px;">
+          ${['Virgin hair — never colored','Box dye before','Professionally colored','Bleached before'].map(opt =>
+            `<button onclick="pickTreatment('${opt}')" style="padding:9px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);cursor:pointer;font-size:13px;color:var(--ink);text-align:left;font-family:'DM Sans',sans-serif;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">${opt}</button>`
+          ).join('')}
+        </div>
+      </div>
+    </div>`;
+  el.scrollTop = el.scrollHeight;
+}
+
+function pickTreatment(t) {
+  consultAnswers.treatment = t;
+  addMsg('user', t);
+  setTimeout(() => showConsultStep3(), 500);
+}
+
+function showConsultStep3() {
+  const el = document.getElementById('chatMessages');
+  el.innerHTML += `
+    <div class="msg msg-bot">
+      <div class="msg-av">✂</div>
+      <div class="msg-bubble">
+        And what's your goal?
+        <div style="display:flex;flex-direction:column;gap:7px;margin-top:10px;">
+          ${['Go lighter / blonde','Go darker','Cover grays','Try a fun vivid color','Fix a color problem','Root touch-up'].map(opt =>
+            `<button onclick="pickGoal('${opt}')" style="padding:9px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);cursor:pointer;font-size:13px;color:var(--ink);text-align:left;font-family:'DM Sans',sans-serif;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">${opt}</button>`
+          ).join('')}
+        </div>
+      </div>
+    </div>`;
+  el.scrollTop = el.scrollHeight;
+}
+
+function pickGoal(g) {
+  consultAnswers.goal = g;
+  addMsg('user', g);
+  setTimeout(() => finishConsultation(), 600);
+}
+
+function finishConsultation() {
+  const { level, levelName, treatment, goal, partner } = consultAnswers;
+  const partnerContext = partner === 'besties' 
+    ? 'I have a friend helping me — give instructions for two people doing this together, including tips for helping each other with application, sectioning from behind, and how to make it a fun experience together.'
+    : 'I am doing this solo — give clear instructions for one person working alone, including tips for seeing the back of their head and self-application techniques.';
+  const summary = `My natural hair is Level ${level} (${levelName}). Color history: ${treatment}. My goal: ${goal}. ${partnerContext} Based on my vibe (${currentVibe}) please give me a full personalized recommendation including exact products with Amazon links.`;
+  addMsg('bot', 'Perfect — I have everything I need! Let me put together your personalized plan... 💕');
+  messages.push({ role: 'user', content: summary });
+  setTimeout(() => sendConsultResult(), 800);
+}
+
+async function sendConsultResult() {
+  const messagesEl = document.getElementById('chatMessages');
+  const typingId = 'typing-' + Date.now();
+  messagesEl.innerHTML += `<div class="msg msg-bot" id="${typingId}"><div class="msg-av">✂</div><div class="msg-bubble" style="padding:12px 14px;"><div class="typing"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div></div></div>`;
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system: getSystem(), messages })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Something went wrong!';
+    messages.push({ role: 'assistant', content: reply });
+    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-av">✂</div><div class="msg-bubble">${formatText(reply)}</div></div>`;
+  } catch(e) {
+    document.getElementById(typingId).outerHTML = `<div class="msg msg-bot"><div class="msg-av">✂</div><div class="msg-bubble">Connection issue — please try again!</div></div>`;
   }
-  return true;
+  messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
-function showEmailPopup() {
-  document.getElementById('emailOverlay').classList.add('visible');
-}
-
-function skipEmail() {
-  document.getElementById('emailOverlay').classList.remove('visible');
-  emailUnlocked = true; // give them one more after skipping
-}
+// ============ EMAIL ============
+function showEmailPopup() { document.getElementById('emailOverlay').classList.add('visible'); }
+function skipEmail() { document.getElementById('emailOverlay').classList.remove('visible'); emailUnlocked = true; }
 
 async function submitEmail() {
   const email = document.getElementById('emailInput').value.trim();
   const btn = document.getElementById('emailSubmitBtn');
   const err = document.getElementById('emailError');
-
-  if (!email || !email.includes('@')) {
-    err.textContent = 'Please enter a valid email address';
-    err.style.display = 'block';
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = '...';
-  err.style.display = 'none';
-
+  if (!email || !email.includes('@')) { err.textContent = 'Please enter a valid email'; err.style.display = 'block'; return; }
+  btn.disabled = true; btn.textContent = '...'; err.style.display = 'none';
   try {
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-
+    const res = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
     const data = await res.json();
-
     if (data.success) {
       document.getElementById('emailForm').style.display = 'none';
       document.getElementById('emailSuccess').style.display = 'flex';
       localStorage.setItem('colorfix_unlocked', 'true');
       emailUnlocked = true;
-      setTimeout(() => {
-        document.getElementById('emailOverlay').classList.remove('visible');
-      }, 2500);
-    } else {
-      err.textContent = data.error || 'Something went wrong. Try again.';
-      err.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Unlock →';
-    }
-  } catch(e) {
-    err.textContent = 'Connection error. Please try again.';
-    err.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Unlock →';
-  }
+      setTimeout(() => { document.getElementById('emailOverlay').classList.remove('visible'); }, 2500);
+    } else { err.textContent = data.error || 'Something went wrong'; err.style.display = 'block'; btn.disabled = false; btn.textContent = 'Unlock →'; }
+  } catch(e) { err.textContent = 'Connection error'; err.style.display = 'block'; btn.disabled = false; btn.textContent = 'Unlock →'; }
 }
 
-// Load saved question count
-freeQuestionsUsed = parseInt(localStorage.getItem('colorfix_questions') || '0');
-async function submitSectionEmail() {
-  const email = document.getElementById('sectionEmailInput').value.trim();
-  const btn = document.getElementById('sectionEmailBtn');
-  const err = document.getElementById('sectionEmailError');
-  const success = document.getElementById('sectionEmailSuccess');
-
-  if (!email || !email.includes('@')) {
-    err.textContent = 'Please enter a valid email address';
-    err.style.display = 'block';
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = '...';
+async function submitSignup() {
+  const email = document.getElementById('signupEmail').value.trim();
+  const err = document.getElementById('signupError');
+  const success = document.getElementById('signupSuccess');
+  if (!email || !email.includes('@')) { err.textContent = 'Please enter a valid email'; err.style.display = 'block'; return; }
   err.style.display = 'none';
-
   try {
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-
+    const res = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
     const data = await res.json();
-
     if (data.success) {
       success.style.display = 'block';
-      document.getElementById('sectionEmailInput').style.display = 'none';
-      btn.style.display = 'none';
+      document.getElementById('signupEmail').style.display = 'none';
+      document.querySelector('.signup-btn').style.display = 'none';
       localStorage.setItem('colorfix_unlocked', 'true');
       emailUnlocked = true;
-    } else {
-      err.textContent = data.error || 'Something went wrong. Try again.';
-      err.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Get Access →';
-    }
-  } catch(e) {
-    err.textContent = 'Connection error. Please try again.';
-    err.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Get Access →';
-  }
+    } else { err.textContent = data.error || 'Something went wrong'; err.style.display = 'block'; }
+  } catch(e) { err.textContent = 'Connection error'; err.style.display = 'block'; }
 }
 
-
-
-const LEGAL_CONTENT = {
-  privacy: `
-    <h2 style="font-family:'Syne',sans-serif; font-size:22px; margin-bottom:16px;">Privacy Policy</h2>
-    <p style="font-size:12px; color:#8A7080; margin-bottom:16px;">Last updated: June 2026</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Information We Collect:</strong> When you use The Color Fix, we may collect information you voluntarily provide in the chat, including hair color questions and uploaded photos. We do not store your conversation history on our servers.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>How We Use Your Information:</strong> Your chat inputs are processed by Anthropic's AI to generate responses. We do not sell, share, or distribute your personal information to third parties except as required to operate the service.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Cookies:</strong> This site may use basic cookies for functionality. We do not use tracking cookies for advertising purposes.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Third Party Links:</strong> This site contains Amazon affiliate links. Amazon has its own privacy policy which governs any data collected when you visit their site.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Children's Privacy:</strong> We do not knowingly collect personal information from children under 13. If you are under 13 please have a parent or guardian supervise your use of this service.</p>
-    <p style="font-size:14px; line-height:1.7; color:#3D2B38;"><strong>Contact:</strong> For privacy questions, contact us through our social channels @getthecolorfix.</p>
-  `,
-  terms: `
-    <h2 style="font-family:'Syne',sans-serif; font-size:22px; margin-bottom:16px;">Terms of Service</h2>
-    <p style="font-size:12px; color:#8A7080; margin-bottom:16px;">Last updated: June 2026</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Legal Entity:</strong> The Color Fix is owned and operated by <strong>HairByBethanyLLC</strong>, a limited liability company registered in the State of Rhode Island.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Acceptance of Terms:</strong> By using The Color Fix you agree to these terms. If you do not agree, please do not use this service.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Informational Purpose Only:</strong> The Color Fix provides general hair color guidance for informational and educational purposes only. This is not professional beauty advice. Results vary significantly based on individual hair type, condition, previous chemical treatments, and application technique.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>No Liability:</strong> HairByBethanyLLC, The Color Fix, and its operators are not responsible or liable for any hair damage, breakage, color results, skin reactions, or other adverse outcomes resulting from following advice provided by this service. You use this service entirely at your own risk.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Patch Test Requirement:</strong> You agree to always perform a patch test at least 48 hours before applying any hair color product. Failure to do so is solely your responsibility.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Professional Consultation:</strong> For significant color changes, chemically treated hair, or any situation where you are unsure, we strongly recommend consulting a licensed professional cosmetologist.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;"><strong>Governing Law:</strong> These terms are governed by the laws of the State of Rhode Island.</p>
-    <p style="font-size:14px; line-height:1.7; color:#3D2B38;"><strong>Changes to Terms:</strong> HairByBethanyLLC reserves the right to update these terms at any time. Continued use of the service constitutes acceptance of updated terms.</p>
-  `,
-  affiliate: `
-    <h2 style="font-family:'Syne',sans-serif; font-size:22px; margin-bottom:16px;">Affiliate Disclosure</h2>
-    <p style="font-size:12px; color:#8A7080; margin-bottom:16px;">Last updated: June 2026</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;">The Color Fix participates in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;">When you click on product links on this site and make a purchase, we may earn a small commission at no additional cost to you. This helps support The Color Fix and allows us to continue providing free hair color guidance.</p>
-    <p style="font-size:14px; line-height:1.7; margin-bottom:12px; color:#3D2B38;">We only recommend products that we genuinely believe will be helpful based on professional hair color expertise. Our recommendations are not influenced by commission rates.</p>
-    <p style="font-size:14px; line-height:1.7; color:#3D2B38;">This disclosure is made in compliance with the Federal Trade Commission's guidelines on endorsements and testimonials (16 CFR Part 255).</p>
-  `
+// ============ LEGAL ============
+const LEGAL = {
+  privacy: `<h2 style="font-family:'Syne',sans-serif;font-size:22px;margin-bottom:16px;">Privacy Policy</h2><p style="font-size:12px;color:#8A7080;margin-bottom:16px;">Last updated: June 2026</p><p style="font-size:14px;line-height:1.7;margin-bottom:12px;color:#3D2B38;"><strong>Information We Collect:</strong> When you use The Color Fix, we may collect information you voluntarily provide in the chat, including hair color questions and uploaded photos. We do not store your conversation history on our servers.</p><p style="font-size:14px;line-height:1.7;margin-bottom:12px;color:#3D2B38;"><strong>How We Use Your Information:</strong> Your chat inputs are processed by Anthropic's AI to generate responses. We do not sell, share, or distribute your personal information to third parties except as required to operate the service.</p><p style="font-size:14px;line-height:1.7;margin-bottom:12px;color:#3D2B38;"><strong>Cookies:</strong> This site may use basic cookies for functionality. We do not use tracking cookies for advertising purposes.</p><p style="font-size:14px;line-height:1.7;color:#3D2B38;"><strong>Contact:</strong> For privacy questions, contact us through our social channels @getthecolorfix.</p>`,
+  terms: `<h2 style="font-family:'Syne',sans-serif;font-size:22px;margin-bottom:16px;">Terms of Service</h2><p style="font-size:12px;color:#8A7080;margin-bottom:16px;">Last updated: June 2026</p><p style="font-size:14px;line-height:1.7;margin-bottom:12px;color:#3D2B38;"><strong>Legal Entity:</strong> The Color Fix is owned and operated by <strong>HairByBethanyLLC</strong>, a limited liability company registered in the State of Rhode Island.</p><p style="font-size:14px;line-height:1.7;margin-bottom:12px;color:#3D2B38;"><strong>Acceptance of Terms:</strong> By using The Color Fix you agree to these terms.</p><p style="font-size:14px;line-height:1.7;margin-bottom:12px;color:#3D2B38;"><strong>No Liability:</strong> HairByBethanyLLC, The Color Fix, and its operators are not responsible or liable for any hair damage, breakage, color results, skin reactions, or other adverse outcomes. You use this service entirely at your own risk.</p><p style="font-size:14px;line-height:1.7;margin-bottom:12px;color:#3D2B38;"><strong>Patch Test Requirement:</strong> You agree to always perform a patch test at least 48 hours before applying any hair color product.</p><p style="font-size:14px;line-height:1.7;color:#3D2B38;"><strong>Governing Law:</strong> These terms are governed by the laws of the State of Rhode Island.</p>`,
+  affiliate: `<h2 style="font-family:'Syne',sans-serif;font-size:22px;margin-bottom:16px;">Affiliate Disclosure</h2><p style="font-size:14px;line-height:1.7;margin-bottom:12px;color:#3D2B38;">The Color Fix participates in the Amazon Services LLC Associates Program. When you click on product links and make a purchase, we may earn a small commission at no additional cost to you.</p><p style="font-size:14px;line-height:1.7;color:#3D2B38;">This disclosure is made in compliance with the FTC's guidelines on endorsements and testimonials (16 CFR Part 255).</p>`
 };
 
-function showModal(type) {
-  document.getElementById('modalContent').innerHTML = LEGAL_CONTENT[type];
-  document.getElementById('legalModal').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('legalModal').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-document.getElementById('legalModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
+function showModal(type) { document.getElementById('modalContent').innerHTML = LEGAL[type]; document.getElementById('legalModal').style.display = 'block'; document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('legalModal').style.display = 'none'; document.body.style.overflow = ''; }
+document.getElementById('legalModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 </script>
-
-
-<!-- Email Capture Popup -->
-<div class="email-overlay" id="emailOverlay">
-  <div class="email-modal">
-    <div id="emailForm">
-      <div class="email-modal-icon">✂️</div>
-      <div class="email-modal-title">You've used your 3 free consultations</div>
-      <div class="email-modal-sub">Enter your email for unlimited free access — no credit card needed, ever.</div>
-      <div class="email-input-row">
-        <input type="email" class="email-input" id="emailInput" placeholder="your@email.com" />
-        <button class="email-submit" id="emailSubmitBtn" onclick="submitEmail()">Unlock →</button>
-      </div>
-      <div class="email-error" id="emailError"></div>
-      <button class="email-skip" onclick="skipEmail()">No thanks, I'll use my 3 free questions</button>
-    </div>
-    <div class="email-success" id="emailSuccess">
-      <div class="email-success-icon">🎉</div>
-      <div class="email-success-title">You're in!</div>
-      <div class="email-success-sub">Unlimited access unlocked. Welcome to The Color Fix.</div>
-    </div>
-  </div>
-</div>
 </body>
 </html>
